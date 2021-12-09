@@ -10,7 +10,7 @@
                   py-2
                   align-middle
                   inline-block
-                   text-center text-xs
+                  text-center text-xs
                   min-w-full
                   sm:px-6
                   lg:px-8
@@ -21,7 +21,7 @@
                     shadow
                     overflow-hidden
                     border-b border-gray-200
-                     text-center text-xs
+                    text-center text-xs
                     sm:rounded-lg
                   "
                 >
@@ -34,8 +34,7 @@
                           py-3
                           text-center text-xs
                           font-medium
-                          text-gray-500
-                           text-center text-xs
+                          text-gray-500 text-center text-xs
                           uppercase
                           tracking-wider
                         "
@@ -49,8 +48,7 @@
                           py-3
                           text-center text-xs
                           font-medium
-                          text-gray-500
-                           text-center text-xs
+                          text-gray-500 text-center text-xs
                           uppercase
                           tracking-wider
                         "
@@ -64,8 +62,7 @@
                           py-3
                           text-center text-xs
                           font-medium
-                          text-gray-500
-                           text-center text-xs
+                          text-gray-500 text-center text-xs
                           uppercase
                           tracking-wider
                         "
@@ -79,8 +76,7 @@
                           py-3
                           text-center text-xs
                           font-medium
-                          text-gray-500
-                           text-center text-xs
+                          text-gray-500 text-center text-xs
                           uppercase
                           tracking-wider
                         "
@@ -94,13 +90,26 @@
                           py-3
                           text-center text-xs
                           font-medium
-                          text-gray-500
-                           text-center text-xs
+                          text-gray-500 text-center text-xs
                           uppercase
                           tracking-wider
                         "
                       >
-                        Edit/Delete
+                        Edit
+                      </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-center text-xs
+                          font-medium
+                          text-gray-500 text-center text-xs
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Delete
                       </th>
                     </thead>
 
@@ -111,8 +120,7 @@
                             px-6
                             py-4
                             whitespace-nowrap
-                            text-sm text-gray-500
-                             text-center text-xs
+                            text-sm text-gray-500 text-center text-xs
                           "
                         >
                           <router-link
@@ -129,8 +137,7 @@
                             px-6
                             py-4
                             whitespace-nowrap
-                            text-sm text-gray-500
-                             text-center text-xs
+                            text-sm text-gray-500 text-center text-xs
                           "
                         >
                           {{ user.lastName }}
@@ -141,8 +148,7 @@
                             px-6
                             py-4
                             whitespace-nowrap
-                            text-sm text-gray-500
-                             text-center text-xs
+                            text-sm text-gray-500 text-center text-xs
                           "
                         >
                           {{ user.email }}
@@ -152,8 +158,7 @@
                             px-6
                             py-4
                             whitespace-nowrap
-                            text-sm text-gray-500
-                             text-center text-xs
+                            text-sm text-gray-500 text-center text-xs
                           "
                         >
                           {{ user.role }}
@@ -165,7 +170,7 @@
                             whitespace-nowrap
                             text-right text-sm
                             font-medium
-                             text-center text-xs
+                            text-center text-xs
                           "
                         >
                           <router-link
@@ -179,8 +184,8 @@
                             >
                               Update
                             </button>
-                          </router-link>
-                          <button
+                          </router-link></td>
+                         <td> <button
                             class="text-red-600 hover:text-red-900 ml-5 mr-5"
                             @click.prevent="Delete(user.email, user._id)"
                           >
