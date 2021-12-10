@@ -166,7 +166,6 @@ export default {
 .back {
   color: white;
   background-color: #2a574c;
-  border-radius: 20px;
   float: right;
 }
 </style>
