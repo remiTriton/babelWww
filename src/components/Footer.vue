@@ -69,7 +69,7 @@ export default {
     background-color: #2a574c;
     color: white;
     width: 100%;
-    position: static;
+    position: fixed;
     bottom:0;
 }
 </style>

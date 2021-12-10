@@ -184,6 +184,21 @@
                           >
                             Edit
                           </th>
+                          <th
+                            scope="col"
+                            class="
+                              px-6
+                              py-3
+                              text-center text-xs
+                              font-medium
+                              text-gray-500
+                              uppercase
+                              tracking-wider
+                              text-center text-xs
+                            "
+                          >
+                            Delete
+                          </th>
                         </tr>
                       </thead>
                       <!-- end of category bar -->
@@ -328,6 +343,8 @@
                                 Update
                               </button>
                             </router-link>
+                          </td>
+                          <td>
                             <button
                               class="text-red-600 hover:text-red-900"
                               @click.prevent="Delete(wine.cuvee, wine._id)"
