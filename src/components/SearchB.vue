@@ -366,7 +366,7 @@
               text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Beer')"
+            @click="filter('Alcool')"
           >
             Alcool
           </button></span
