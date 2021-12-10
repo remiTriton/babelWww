@@ -77,33 +77,35 @@
                 placeholder="Your email address"
               />
             </div>
-            <div> <div class="w-1/2 mr-1">
+            <div>
+              <div class="w-1/2 mr-1">
                 <label
                   class="block text-white text-sm font-bold mb-2"
                   for="first_name"
                   >Role</label
                 >
-              <select
-                v-model="user.role"
-                class="
-                  block
-                  appearance-none
-                  w-full
-                  bg-white-200
-                  border border-gray-200
-                  text-white-700
-                  py-3
-                  px-4
-                  pr-8
-                  rounded
-                  leading-tight
-                  focus:outline-none focus:bg-white focus:border-white-500
-                "
-                id="grid-state"
-              >
-                <option>Admin</option>
-                <option>Manager</option>
-              </select>
+                <select
+                  v-model="user.role"
+                  class="
+                    block
+                    appearance-none
+                    w-full
+                    bg-white-200
+                    border border-gray-200
+                    text-white-700
+                    py-3
+                    px-4
+                    pr-8
+                    rounded
+                    leading-tight
+                    focus:outline-none focus:bg-white focus:border-white-500
+                  "
+                  id="grid-state"
+                >
+                  <option>Admin</option>
+                  <option>Manager</option>
+                  <option>Serveur</option>
+                </select>
               </div>
               <button
                 class="But hover:bg-dark font-bold py-2 px-4 rounded-full"
@@ -149,7 +151,7 @@ export default {
           firstName: this.user.firstName,
           lastName: this.user.lastName,
           email: this.user.email,
-          role:this.user.role
+          role: this.user.role,
         },
       ]);
       await this.$store.dispatch("auth/getUsers");
