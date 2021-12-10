@@ -79,7 +79,7 @@
               text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Bubble', query)"
+            @click="filter('Bulles', query)"
           >
             Bulles
           </button></span
@@ -202,7 +202,7 @@
               text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Rose', query)"
+            @click="filter('Rosé', query)"
           >
             Rosé
           </button></span
