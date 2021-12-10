@@ -2,7 +2,7 @@
   <div>
     <div class="formulaire">
       <form @submit.prevent.stop class="w-full max-w-lg mt-20">
-        //////
+      
 
         <div class="grid grid-cols-2 gap-8">
           <div>
