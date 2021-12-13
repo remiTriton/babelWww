@@ -50,7 +50,8 @@ methods:{
     }else{
       await this.$store.dispatch('auth/newPassword', [this.$route.params.id,this.$route.params._id, {
         password:password
-      }])
+      }]);
+      this.$router.push('/login');
     }
 
   }
