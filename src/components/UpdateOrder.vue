@@ -1,11 +1,11 @@
 <template>
-  <Suspense>
+ <div> <Suspense>
     <div class="mt-10">
-      <!-- <MiniSearchBar v-on:searchWine="search" v-on:toggleCrud="show" /> -->
       <div
         class="mx-60 ml-58 mr-16 mt-10 border-dashed border-2 border-gray-600"
         v-if="order"
       >
+      <button class="text-gray-700" @click.prevent="newWineInOrder">Search for a wine</button>
         <table class="table-auto mx-auto mt-5">
           <thead>
             <tr class="bg-gray-200">
@@ -154,14 +154,22 @@
       </div>
     </div>
   </Suspense>
+      <WinesAdm v-if='addWine' />
+</div>
 </template>
 
 <script>
-// import MiniSearchBar from "./MiniSearchBar.vue";
-
+import WinesAdm from "./WinesAdm.vue"
 export default {
   name: "newOrder",
-
+  components : {
+    WinesAdm
+    },
+    data(){
+      return{
+        addWine:false,
+      }
+    },
   created() {
     this.$store.dispatch("orders/findOneOrder", this.$route.params.id);
   },
@@ -183,11 +191,6 @@ export default {
         return this.order.wines.cuvee.indexOf(query) > -1;
       });
     },
-
-    show() {
-      this.showWines = !this.showWines;
-    },
-
     async Delete(id) {
       if (confirm("Attention : Vous êtes sur le point de supprimer ")) {
         await this.$store.dispatch("orders/delWine", [
@@ -232,6 +235,9 @@ export default {
         this.$router.push("/Admin");
       }
     },
+    newWineInOrder(){
+      this.addWine = !this.addWine
+    }
   },
 };
 </script>
