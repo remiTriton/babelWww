@@ -117,7 +117,7 @@ const orders = {
     },
     //On supprime uin vin d'un bdc
     async delWine(context, [id, wine]) {
-      await fetch("http://localhost:3001/api/orders/deleteOneWine/" + id, {
+      await fetch("http://api/orders/deleteOneWine/" + id, {
         "method": "PUT",
         body: JSON.stringify(wine),
         "headers": {
