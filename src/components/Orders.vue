@@ -199,6 +199,8 @@
                               Update
                             </button>
                           </router-link>
+                        </td>
+                        <td>
                           <button
                             class="text-red-600 hover:text-red-900"
                             @click.prevent="Delete(order._id)"
