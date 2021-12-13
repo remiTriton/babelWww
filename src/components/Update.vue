@@ -538,7 +538,7 @@ export default {
           quantite: this.quantite + this.wine.quantite,
           prix: this.wine.prix,
           departement: this.wine.departement,
-          imgBase64: this.imgBase64,
+          imgBase64: this.wine.imgBase64,
         },
       ]);
       await this.$router.push("/Admin");
