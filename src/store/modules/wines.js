@@ -3,8 +3,9 @@ const wines = {
   namespaced: true,
   state: {
     wines: [],
-    Total:[],
-    wine: {}
+    Total: [],
+    wine: {},
+    pages: []
   },
 
   mutations: {
@@ -14,9 +15,12 @@ const wines = {
     setwine(state, list) {
       state.wine = list;
     },
-    setTotal(state, list){
+    setTotal(state, list) {
       state.Total = list;
-    }
+    },
+    setPages(state, list) {
+      state.pages = list;
+    },
   },
 
   actions: {
@@ -25,7 +29,15 @@ const wines = {
     async fetchWines(context) {
       const res = await fetch("/api/wines/")
       const data = await res.json();
+      const catalog = [];
+
+      for (let i = 0; i < parseInt(data.length / 24)+1; i++) {
+        catalog.push(i);
+      }
       context.commit("setwines", data);
+      context.commit("setPages", catalog);
+      console.log(data)
+
     },
 
     //Print d'un wines
@@ -99,9 +111,14 @@ const wines = {
     async wineKpi(context) {
       const res = await fetch("/api/wines/kpi/sum"
       );
-      const data= await res.json();
+      const data = await res.json();
       console.log(data)
       context.commit("setTotal", data)
+    },
+    async limitWines(context, i) {
+      const res = await fetch("/api/wines/" + i + "/24")
+      const data = await res.json();
+      context.commit("setwines", data);
     }
   }
 }

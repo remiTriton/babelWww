@@ -3,6 +3,6 @@ import App from './views/App.vue'
 import './index.css'
 import router from './router'
 import store from "./store"
-
-createApp(App).use(router).use(store).mount('#app')
+import VuePaginate from 'vue-paginate'
+createApp(App).use(router).use(store).use(VuePaginate).mount('#app')
 
