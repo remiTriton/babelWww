@@ -156,7 +156,7 @@
         </div>
       </div>
     </Suspense>
-    <WinesAdm v-if="addWine" />
+    <WinesAdm v-if="addWine && order.status != 'Confirmed'" />
   </div>
 </template>
 

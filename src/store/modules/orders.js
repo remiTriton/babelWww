@@ -126,6 +126,11 @@ const orders = {
 
         }
       });
+    },
+
+     cancelOrder(context){
+      let order = null;
+      context.commit("setOrder", order)
     }
   }
 }

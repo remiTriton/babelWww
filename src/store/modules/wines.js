@@ -36,7 +36,6 @@ const wines = {
       }
       context.commit("setwines", data);
       context.commit("setPages", catalog);
-      console.log(data)
 
     },
 
@@ -112,7 +111,6 @@ const wines = {
       const res = await fetch("/api/wines/kpi/sum"
       );
       const data = await res.json();
-      console.log(data)
       context.commit("setTotal", data)
     },
     async limitWines(context, i) {
