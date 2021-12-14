@@ -5,50 +5,50 @@
       <!-- <p class='text-black'> {{auth}}</p> -->
       <div class="hidden md:flex md:w-64 md:flex-col md:absolute">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
-    <div>
-            <button
-              @click="nouveauBon(auth.user.email)"
-              type="button"
-              class="
-                B
-                outline-flex
-                items-center
-                px-6
-                py-3
-                border border-transparent
-                text-base
-                font-medium
-                rounded-full
-                shadow-sm
-                text-white
-                bg-indigo-600
-                hover:bg-indigo-700
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-indigo-500
-                mt-10
-              "
+        <div>
+          <button
+            @click="nouveauBon(auth.user.email)"
+            type="button"
+            class="
+              B
+              outline-flex
+              items-center
+              px-6
+              py-3
+              border border-transparent
+              text-base
+              font-medium
+              rounded-full
+              shadow-sm
+              text-white
+              bg-indigo-600
+              hover:bg-indigo-700
+              focus:outline-none
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-indigo-500
+              mt-10
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+              />
+            </svg>
+          </button>
+        </div>
         <!-- <p class='text-black'>{{auth}}</p> -->
         <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
-        <div>
+          <div>
             <button
               @click="nouveauBon(auth.user.email)"
               type="button"
@@ -302,13 +302,12 @@ import Users from "../components/Users.vue";
 import Orders from "../components/Orders.vue";
 import Kpi from "../components/Kpi.vue";
 
-
 export default {
   name: "Adm",
   components: {
     OrderDoing,
     Add,
-    
+
     WinesAdm,
     Users,
     Orders,
@@ -360,7 +359,6 @@ export default {
       this.showUsers = false;
       this.showBills = false;
       this.showKpi = true;
-
     },
     async nouveauBon(user) {
       await this.$store.dispatch("orders/newOrder", {

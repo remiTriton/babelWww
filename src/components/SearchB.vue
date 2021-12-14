@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container flex flex-col md:text-center">
+    <div class="container flex flex-col md:text-center mt-10">
       <div class="resp">
         <span>
           <button
