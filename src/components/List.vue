@@ -151,6 +151,7 @@ export default {
   width:auto;
   display:flex;
   justify-content: center;
+  flex-wrap:wrap;
 }
 .page{
     color:  #2a574c;

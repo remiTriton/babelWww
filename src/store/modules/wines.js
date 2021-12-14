@@ -116,7 +116,7 @@ const wines = {
       context.commit("setTotal", data)
     },
     async limitWines(context, i) {
-      const res = await fetch("/api/wines/" + i + "/24")
+      const res = await fetch("/api/wines/pagination/" + i + "/24")
       const data = await res.json();
       context.commit("setwines", data);
     }
