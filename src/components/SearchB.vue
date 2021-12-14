@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container flex flex-col md:text-center">
-      <div class="">
+      <div class="resp">
         <span>
           <button
             class="
@@ -457,5 +457,8 @@ export default {
 }
 .left {
   margin-top: 50px;
+}
+.resp{
+flex-wrap: wrap;
 }
 </style>
