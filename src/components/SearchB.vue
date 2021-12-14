@@ -16,14 +16,8 @@
               font-medium
               rounded-full
               shadow-sm
-              text-white
-              
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-indigo-500
+              focus:outline-none focus:bg-green-900
               bg-transparent
-              text-#2a574c
               inline-block
               text-xl
               px-4
@@ -31,10 +25,8 @@
               leading-none
               border
               rounded
-              text-white
               border-white
               font-bold
-              hover:text-#2a574c hover:border-transparent
               br-5
               rounded
               border-2 border-light-blue-500 border-opacity-20
@@ -59,14 +51,9 @@
               font-medium
               rounded-full
               shadow-sm
-              text-white
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-indigo-500
+              focus:outline-none focus:bg-green-900
               bg-transparent
               font-bold
-              hover:text-#2a574c hover:border-transparent
               br-5
               rounded
               inline-block
@@ -76,7 +63,6 @@
               leading-none
               border
               rounded
-              text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
             @click="filter('Bulles', query)"
@@ -89,7 +75,7 @@
           <button
             class="
               test
-            w-35
+              w-35
               inline-flex
               items-center
               px-4
@@ -99,15 +85,9 @@
               font-medium
               rounded-full
               shadow-sm
-              text-white
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-indigo-500
+              focus:outline-none focus:bg-green-900
               bg-transparent
-              text-#2a574c
               font-bold
-              hover:text-#2a574c hover:border-transparent
               br-5
               rounded
               inline-block
@@ -117,7 +97,6 @@
               leading-none
               border
               rounded
-              text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
             @click="filter('Rouge', query)"
@@ -140,15 +119,9 @@
               font-medium
               rounded-full
               shadow-sm
-              text-white
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-indigo-500
+              focus:outline-none focus:bg-green-900
               bg-transparent
-              text-#2a574c
               font-bold
-              hover:text-#2a574c hover:border-transparent
               br-5
               rounded
               inline-block
@@ -158,7 +131,6 @@
               leading-none
               border
               rounded
-              text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
             @click="filter('Blanc', query)"
@@ -181,15 +153,9 @@
               font-medium
               rounded-full
               shadow-sm
-              text-white
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-indigo-500
+              focus:outline-none focus:bg-green-900
               bg-transparent
-              text-#2a574c
               font-bold
-              hover:text-#2a574c hover:border-transparent
               br-5
               rounded
               inline-block
@@ -199,8 +165,6 @@
               leading-none
               border
               rounded
-              text-white
-              border-white border-2 border-light-blue-500 border-opacity-20
             "
             @click="filter('Rosé', query)"
           >
@@ -222,15 +186,9 @@
               font-medium
               rounded-full
               shadow-sm
-              text-white
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-indigo-500
+              focus:outline-none focus:bg-green-900
               bg-transparent
-              text-#2a574c
               font-bold
-              hover:text-#2a574c hover:border-transparent
               br-5
               rounded
               inline-block
@@ -240,7 +198,6 @@
               leading-none
               border
               rounded
-              text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
             @click="filter('Ovni', query)"
@@ -249,7 +206,7 @@
           </button></span
         >
 
-<span>
+        <span>
           <button
             class="
               test
@@ -263,15 +220,9 @@
               font-medium
               rounded-full
               shadow-sm
-              text-white
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-indigo-500
+              focus:outline-none focus:bg-green-900
               bg-transparent
-              text-#2a574c
               font-bold
-              hover:text-#2a574c hover:border-transparent
               br-5
               rounded
               inline-block
@@ -281,7 +232,6 @@
               leading-none
               border
               rounded
-              text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
             @click="filter('Magnum', query)"
@@ -289,7 +239,6 @@
             Magnum
           </button></span
         >
-
 
         <span>
           <button
@@ -306,12 +255,7 @@
               font-medium
               rounded-full
               shadow-sm
-              text-white
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-indigo-500
-              text-#2a574c
+              focus:outline-none focus:bg-green-900
               font-bold
               hover:text-#2a574c hover:border-transparent
               br-5
@@ -323,7 +267,6 @@
               leading-none
               border
               rounded
-              text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
             @click="filter('Beer')"
@@ -346,12 +289,7 @@
               font-medium
               rounded-full
               shadow-sm
-              text-white
-              focus:outline-none
-              focus:ring-2
-              focus:ring-offset-2
-              focus:ring-indigo-500
-              text-#2a574c
+              focus:outline-none focus:bg-green-900
               font-bold
               hover:text-#2a574c hover:border-transparent
               br-5
@@ -363,7 +301,6 @@
               leading-none
               border
               rounded
-              text-white
               border-white border-2 border-light-blue-500 border-opacity-20
             "
             @click="filter('Alcool')"
@@ -496,6 +433,12 @@ export default {
 .test {
   border-color: #2a574c;
   color: #2a574c;
+  margin-left: 50px;
+}
+
+.test:focus {
+  border-color: #2a574c;
+  color: white;
   margin-left: 50px;
 }
 

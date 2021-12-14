@@ -427,7 +427,8 @@ export default {
       ]);
     },
     async fetchWines() {
-      this.$store.dispatch("wines/fetchWines");
+      console.log('click')
+      await this.$store.dispatch("wines/fetchWines");
     },
     async filter(query, value) {
       if (!query) {

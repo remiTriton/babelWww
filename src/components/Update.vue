@@ -2,8 +2,6 @@
   <div>
     <div class="formulaire">
       <form @submit.prevent.stop class="w-full max-w-lg mt-20">
-      
-
         <div class="grid grid-cols-2 gap-8">
           <div>
             <label
@@ -333,7 +331,7 @@
               "
               for="grid-quantite"
             >
-              Quantité
+              En stock : {{wine.quantite}}<br>
             </label>
             <input
               v-model="quantite"
@@ -481,11 +479,7 @@ export default {
       img: "/src/",
     };
   },
-  watch: {
-    "wine.quantite": function (v) {
-      this.quantite = v;
-    },
-  },
+
   created() {
     this.$store.dispatch("wines/findOnewines", this.$route.params.id);
   },
@@ -521,8 +515,9 @@ export default {
       reader.readAsDataURL(file);
     },
     async updateWine() {
-      this.wine.quantite = this.wine.quantite || 0;
-
+      if(!this.imgBase64){
+        this.imgBase64 === this.wine.imgBase64
+      }
       await this.$store.dispatch("wines/updateWine", [
         this.$route.params.id,
         {
@@ -538,7 +533,7 @@ export default {
           quantite: this.quantite + this.wine.quantite,
           prix: this.wine.prix,
           departement: this.wine.departement,
-          imgBase64: this.wine.imgBase64,
+          imgBase64: this.imgBase64 || this.wine.imgBase64,
         },
       ]);
       await this.$router.push("/Admin");
