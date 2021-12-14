@@ -62,6 +62,7 @@
               text-sm
               font-medium
               rounded-md
+              mt-5
             "
           >
             <svg
@@ -339,4 +340,5 @@ export default {
   background-color: #2a574c;
   color: white;
 }
+
 </style>
