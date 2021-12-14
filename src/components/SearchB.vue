@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container mt-10 flex flex-col md:text-center">
+    <div class="container flex flex-col md:text-center">
       <div class="">
         <span>
           <button
@@ -339,6 +339,8 @@
               border-b-2 border-gray-400
               outline-none
               focus:border-green-400
+              rounded-3xl
+              ml-5
             "
           />
           <div class="mt-4">
@@ -454,6 +456,6 @@ export default {
   position: relative;
 }
 .left {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 </style>
