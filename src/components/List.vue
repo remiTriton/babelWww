@@ -5,8 +5,6 @@
       v-on:color="filter"
       v-on:allWines="fetchWines"
     />
-
-
     <div class="list bg-white">
       <div
         class="
@@ -18,9 +16,6 @@
           lg:max-w-7xl lg:px-8
         "
       >
-        <h2 class="sr-only">wines</h2>
-        >
-
         <div
           class="
             grid grid-cols-1
@@ -66,16 +61,17 @@
             </p>
           </div>
         </div>
-        
       </div>
-         <div class='pages m-10'> <button
-      v-for="(page, i) in pages.length"
-      :key="i"
-      class="text-gray-700 m-5 page"
-      @click="changePage(i)"
-    >
-      {{ i + 1 }}
-    </button></div>
+      <div class="pages m-10">
+        <button
+          v-for="(page, i) in pages.length"
+          :key="i"
+          class="text-gray-700 m-5 page"
+          @click="changePage(i)"
+        >
+          {{ i + 1 }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -87,14 +83,13 @@ export default {
   components: { SearchB },
   async created() {
     await this.$store.dispatch("wines/fetchWines");
-  await this.$store.dispatch('wines/limitWines', 0)
-
+    await this.$store.dispatch("wines/limitWines", 0);
   },
   computed: {
     wines() {
       return this.$store.state.wines.wines;
     },
-      pages() {
+    pages() {
       return this.$store.state.wines.pages;
     },
   },
@@ -121,9 +116,9 @@ export default {
     back() {
       this.$router.back(-1);
     },
-   async changePage(i) {
-      await this.$store.dispatch('wines/limitWines', i*24)
-},
+    async changePage(i) {
+      await this.$store.dispatch("wines/limitWines", i * 24);
+    },
   },
 };
 </script>
@@ -147,14 +142,14 @@ export default {
   margin-right: auto;
   font-size: large;
 }
-.pages{
-  width:auto;
-  display:flex;
+.pages {
+  width: auto;
+  display: flex;
   justify-content: center;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
-.page{
-    color:  #2a574c;
+.page {
+  color: #2a574c;
 }
 .back {
   color: white;

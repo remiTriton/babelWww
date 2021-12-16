@@ -267,7 +267,6 @@ export default {
   components: {
     OrderDoing,
     Add,
-
     WinesAdm,
     Users,
     Orders,
@@ -300,18 +299,21 @@ export default {
       this.showWines = false;
       this.showUsers = true;
       this.showBills = false;
+      this.showKpi = false;
     },
     toggleWines() {
       this.add = false;
       this.showWines = true;
       this.showUsers = false;
       this.showBills = false;
+      this.showKpi = false;
     },
     toggleBills() {
       this.add = false;
       this.showWines = false;
       this.showUsers = false;
       this.showBills = true;
+      this.showKpi = false;
     },
     toggleshowKpi() {
       this.add = false;
@@ -338,5 +340,4 @@ export default {
   background-color: #2a574c;
   color: white;
 }
-
 </style>

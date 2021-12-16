@@ -1,5 +1,5 @@
 <template>
-  <div class="md:pl-64 flex flex-col flex-1">
+  <div class="md:pl-64 flex flex-col flex-1 h-screen">
     <main class="flex-1">
       <div class="py-6">
         <div class="mx-auto px-4 sm:px-6 md:px-8">
@@ -235,7 +235,14 @@ export default {
   },
   methods: {
     async Delete(id) {
-      await this.$store.dispatch("orders/deleteOrder", id);
+      if (
+        confirm(
+          "Attention : Vous êtes sur le point de supprimer une commande, numéro :" +
+            id
+        )
+      ) {
+        await this.$store.dispatch("orders/deleteOrder", id);
+      }
     },
   },
 };

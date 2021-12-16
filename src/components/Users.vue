@@ -1,5 +1,5 @@
 <template>
-  <div class="md:pl-64 flex flex-col flex-1">
+  <div class="md:pl-64 flex flex-col flex-1 h-screen">
     <main class="flex-1">
       <div class="py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
@@ -123,14 +123,8 @@
                             text-sm text-gray-500 text-center text-xs
                           "
                         >
-                          <router-link
-                            :to="{
-                              name: 'Print',
-                              params: { id: user._id },
-                            }"
-                          >
+
                             {{ user.firstName }}
-                          </router-link>
                         </td>
                         <td
                           class="

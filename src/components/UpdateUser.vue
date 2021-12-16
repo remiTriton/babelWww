@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent.stop>
-    <div class="w-full bg-grey mt-40 ml-10" style="padding-top: 4rem">
-      <div class="container mx-auto py-8">
+    <div class="w-full bg-grey  ml-10">
+      <div class="container py-8">
         <div class="block w-5/6 lg:w-1/2 mx-auto bg-white rounded shadow">
           <div
             class="py-4 px-8 text-white text-xl border-b border-grey-lighter"

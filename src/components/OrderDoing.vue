@@ -124,7 +124,7 @@
     <button @click="cancel" class="remove mt-10">
       <td
         class="px-6 py-4 whitespace-nowrap"
-        v-if="order.status != 'Confirmed'"
+        v-if="order"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
