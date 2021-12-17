@@ -479,7 +479,6 @@ export default {
       img: "/src/",
     };
   },
-
   created() {
     this.$store.dispatch("wines/findOnewines", this.$route.params.id);
   },
@@ -488,13 +487,12 @@ export default {
       return this.$store.state.wines.wine;
     },
   },
-
   methods: {
     previewFile(e) {
       const file = e.target.files[0];
       const reader = new FileReader();
-      const maxW = 1000;
-      const maxH = 1000;
+      const maxW = 500;
+      const maxH = 500;
       reader.onload = () => {
         const img = new Image();
         img.onload = () => {

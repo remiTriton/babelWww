@@ -111,10 +111,7 @@ export default {
       }
     },
     async fetchWines() {
-      this.$store.dispatch("wines/fetchWines");
-    },
-    back() {
-      this.$router.back(-1);
+      await this.$store.dispatch("wines/limitWines", i * 0);
     },
     async changePage(i) {
       await this.$store.dispatch("wines/limitWines", i * 24);
