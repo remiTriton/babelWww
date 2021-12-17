@@ -499,8 +499,8 @@ export default {
       previewFile(e) {
       const file = e.target.files[0];
       const reader = new FileReader();
-      const maxW = 1000;
-      const maxH = 1000;
+      const maxW = 200;
+      const maxH = 200;
       reader.onload = () => {
         const img = new Image();
         img.onload = () => {
