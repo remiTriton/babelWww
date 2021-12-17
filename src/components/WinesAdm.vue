@@ -1,6 +1,6 @@
 <template>
   <Suspense>
-    <div class="md:pl-60 flex flex-col flex-1">
+    <div class="md:pl-60 flex flex-col flex-1 mt-10">
       <SearchB
         v-on:searchWine="search"
         v-on:color="filter"

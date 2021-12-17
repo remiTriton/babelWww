@@ -48,8 +48,8 @@
                   v-bind:src="wine.imgBase64"
                   :alt="wine.cuvee"
                   class="
-                    w-full
-                    h-full
+                    w-auto
+                    h-auto
                     object-center object-cover
                     group-hover:opacity-75
                   "
