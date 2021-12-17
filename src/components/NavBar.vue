@@ -10,7 +10,6 @@
           </div>
 <div class="flex ">
           <div class="space-x-4 mr-28">
-            <div class="log">
               <router-link
                 v-if="!auth"
                 to="/login"
@@ -27,9 +26,7 @@
                 "
                 >Login</router-link
               >
-            </div>
 
-            <div>
               <router-link
                 v-if="!auth"
                 to="/register"
@@ -63,10 +60,9 @@
               >
                 Logout
               </button>
-            </div>
 
-            <div v-if="auth?.user?.role === 'Admin'">
               <router-link
+              v-if="auth?.user?.role === 'Admin'"
                 to="/Admin"
                 class="
                   inline-block
@@ -83,7 +79,6 @@
                 "
                 >Admin</router-link
               >
-            </div>
           </div>
         </div>
         </div>

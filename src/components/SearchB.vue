@@ -395,6 +395,20 @@
                 />
                 <span class="text-gray-500 ml-2">Cépage</span>
               </label>
+              <label
+                class="inline-flex items-center ml-6"
+                v-if="auth && auth.user.role != 'Serveur'"
+                
+              >
+                <input
+                  type="radio"
+                  class="form-radio"
+                  name="accountType"
+                  v-model="type"
+                  value="prix"
+                />
+                <span class="text-gray-500 ml-2">Prix</span>
+              </label>
             </div>
           </div>
         </form>
@@ -412,6 +426,11 @@ export default {
       type: "",
     };
   },
+  computed: {
+    auth() {
+      return this.$store.state.auth.user;
+    },
+  },
   methods: {
     searchWine(type, query) {
       this.$emit("searchWine", type, query);
@@ -419,7 +438,7 @@ export default {
     filter(query, color) {
       this.$emit("color", color, query);
     },
-    getAll() {
+    getAll(){
       this.$emit("allWines");
     },
   },
@@ -458,7 +477,7 @@ export default {
 .left {
   margin-top: 50px;
 }
-.resp{
-flex-wrap: wrap;
+.resp {
+  flex-wrap: wrap;
 }
 </style>

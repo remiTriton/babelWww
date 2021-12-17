@@ -421,17 +421,22 @@ export default {
       this.quantite = "";
     },
     async search(type, query) {
+      if(type==='prix'){
+        await this.$store.dispatch("wines/getWineByPrice", {prix:query});
+
+      }else{
       await this.$store.dispatch("wines/searchWinesByName", [
         type,
         query.charAt(0).toUpperCase() + query.slice(1),
-      ]);
+      ]);}
     },
     async fetchWines() {
-      console.log('click')
       await this.$store.dispatch("wines/fetchWines");
     },
     async filter(query, value) {
+      console.log(value)
       if (!query) {
+      
         await this.$store.dispatch("wines/searchWinesByColor", value);
       } else {
         return (this.$store.state.wines.wines = this.wines.filter(

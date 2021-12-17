@@ -31,7 +31,7 @@ const wines = {
       const data = await res.json();
       const catalog = [];
 
-      for (let i = 0; i < parseInt(data.length / 24)+1; i++) {
+      for (let i = 0; i < parseInt(data.length / 24) + 1; i++) {
         catalog.push(i);
       }
       context.commit("setwines", data);
@@ -107,12 +107,29 @@ const wines = {
         }
       });
     },
+    async getWineByPrice(context, price) {
+      const res = await fetch('/api/wines/price/lowerthan', {
+        "method": "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        },
+        body: JSON.stringify(price),
+
+      })
+      const data = await res.json();
+
+      context.commit('setwines', data)
+
+    },
+
     async wineKpi(context) {
       const res = await fetch("/api/wines/kpi/sum"
       );
       const data = await res.json();
       context.commit("setTotal", data)
     },
+
     async limitWines(context, i) {
       const res = await fetch("/api/wines/pagination/" + i + "/24")
       const data = await res.json();
