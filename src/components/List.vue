@@ -49,7 +49,7 @@
                     object-center object-cover
                     group-hover:opacity-75
                   "
-                /></router-link>
+              /></router-link>
             </div>
             <h3 class="mt-4 text-sm text-gray-700">
               {{ wine.cuvee }}
@@ -87,11 +87,11 @@ export default {
   },
   beforeUnmount() {
     this.wines.forEach((w) => {
-      URL.revokeObjectURL(w.img)
-    })
+      URL.revokeObjectURL(w.img);
+    });
   },
   async created() {
-    // await this.$store.dispatch("wines/fetchWines");
+    await this.$store.dispatch("wines/getPagination");
     await this.$store.dispatch("wines/limitWines", 0);
   },
   computed: {
@@ -103,16 +103,16 @@ export default {
     },
   },
   watch: {
-    'wines': async function (w) {
+    wines: async function (w) {
       const self = this;
 
       const loadImg = async (prodId) => {
         return await fetch(`/api/wines/${prodId}/image`).then(async (img) => {
           const imgBlob = await img.blob();
           const wI = self.wines.findIndex((p) => p._id === prodId);
-          self.wines[wI].img = URL.createObjectURL(imgBlob)
-        })
-      }
+          self.wines[wI].img = URL.createObjectURL(imgBlob);
+        });
+      };
 
       let lengthLoaded = -1;
       const deepLoad = async () => {
@@ -121,11 +121,11 @@ export default {
           await loadImg(this.wines[lengthLoaded]._id);
         }
         if (lengthLoaded < this.wines.length) {
-          deepLoad()
+          deepLoad();
         }
-      }
+      };
       deepLoad();
-    }
+    },
   },
   methods: {
     async search(type, query) {
