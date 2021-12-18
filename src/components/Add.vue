@@ -511,7 +511,6 @@ export default {
           const ihScaled = ih * scale;
           this.$refs.canvas.width = iwScaled;
           this.$refs.canvas.height = ihScaled;
-
           const ctx = this.$refs.canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
           this.imgBase64 = this.$refs.canvas.toDataURL();
