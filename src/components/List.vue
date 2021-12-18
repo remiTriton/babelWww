@@ -91,7 +91,7 @@ export default {
     })
   },
   async created() {
-    // await this.$store.dispatch("wines/fetchWines");
+    await this.$store.dispatch("wines/getPagination");
     await this.$store.dispatch("wines/limitWines", 0);
   },
   computed: {

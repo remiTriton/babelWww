@@ -310,8 +310,8 @@
         >
       </div>
       <div class="flex flex-col items-center text-black">
-        <form class="left" @submit.prevent.stop>
-          <button type="submit" @click.prevent="searchWine(type, query)">
+        <div class="left">
+          <button type="submit" @click.prevent.stop="searchWine(type, query)">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-4 h-4 text-gray-600"
@@ -411,7 +411,7 @@
               </label>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

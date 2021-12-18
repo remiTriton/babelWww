@@ -29,16 +29,22 @@ const wines = {
     async fetchWines(context) {
       const res = await fetch("/api/wines/")
       const data = await res.json();
-      const catalog = [];
-
-      for (let i = 0; i < parseInt(data.length / 24) + 1; i++) {
-        catalog.push(i);
-      }
       context.commit("setwines", data);
-      context.commit("setPages", catalog);
 
     },
 
+    //on récupère nbr de packages
+
+    async getPagination(context){
+      const res = await fetch('/api/wines/pages/')
+      const data = await res.json();
+      console.log(data)
+      const catalog = [];
+      for (let i = 0; i < parseInt(data) + 1; i++) {
+        catalog.push(i);
+      }
+      context.commit('setPages', catalog)
+    },
     //Print d'un wines
 
     async findOnewines(context, _id) {
