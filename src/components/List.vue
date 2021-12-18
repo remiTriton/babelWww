@@ -40,15 +40,16 @@
             >
               <router-link :to="{ name: 'Print', params: { id: wine._id } }">
                 <img
-                  v-bind:src="wine.imgBase64"
+                  v-if="wine.img"
+                  :src="wine.img"
                   :alt="wine.cuvee"
                   class="
-                    w-full
-                    h-full
+                    w-auto
+                    h-auto
                     object-center object-cover
                     group-hover:opacity-75
                   "
-              /></router-link>
+                /></router-link>
             </div>
             <h3 class="mt-4 text-sm text-gray-700">
               {{ wine.cuvee }}
@@ -81,8 +82,16 @@ import SearchB from "./SearchB.vue";
 
 export default {
   components: { SearchB },
+  data() {
+    return {};
+  },
+  beforeUnmount() {
+    this.wines.forEach((w) => {
+      URL.revokeObjectURL(w.img)
+    })
+  },
   async created() {
-    await this.$store.dispatch("wines/fetchWines");
+    // await this.$store.dispatch("wines/fetchWines");
     await this.$store.dispatch("wines/limitWines", 0);
   },
   computed: {
@@ -93,7 +102,31 @@ export default {
       return this.$store.state.wines.pages;
     },
   },
+  watch: {
+    'wines': async function (w) {
+      const self = this;
 
+      const loadImg = async (prodId) => {
+        return await fetch(`/api/wines/${prodId}/image`).then(async (img) => {
+          const imgBlob = await img.blob();
+          const wI = self.wines.findIndex((p) => p._id === prodId);
+          self.wines[wI].img = URL.createObjectURL(imgBlob)
+        })
+      }
+
+      let lengthLoaded = -1;
+      const deepLoad = async () => {
+        lengthLoaded += 1;
+        if (this.wines[lengthLoaded]) {
+          await loadImg(this.wines[lengthLoaded]._id);
+        }
+        if (lengthLoaded < this.wines.length) {
+          deepLoad()
+        }
+      }
+      deepLoad();
+    }
+  },
   methods: {
     async search(type, query) {
       await this.$store.dispatch("wines/searchWinesByName", [
@@ -139,15 +172,18 @@ export default {
   margin-right: auto;
   font-size: large;
 }
+
 .pages {
   width: auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .page {
   color: #2a574c;
 }
+
 .back {
   color: white;
 }
