@@ -40,8 +40,8 @@
             >
               <router-link :to="{ name: 'Print', params: { id: wine._id } }">
                 <img
-                  v-if="isLoaded.indexOf(wine._id) > -1"
-                  :src="`/api/wines/${wine._id}/image`"
+                  v-if="wine.img"
+                  :src="wine.img"
                   :alt="wine.cuvee"
                   class="
                     w-auto
@@ -83,9 +83,12 @@ import SearchB from "./SearchB.vue";
 export default {
   components: { SearchB },
   data() {
-    return {
-      isLoaded: []
-    };
+    return {};
+  },
+  beforeUnmount() {
+    this.wines.forEach((w) => {
+      URL.revokeObjectURL(w.img)
+    })
   },
   async created() {
     // await this.$store.dispatch("wines/fetchWines");
@@ -101,8 +104,27 @@ export default {
   },
   watch: {
     'wines': async function (w) {
-      await fetch(`/api/wines/${w[0]._id}/image`);
-      this.isLoaded.push(w[0]._id);
+      const self = this;
+
+      const loadImg = async (prodId) => {
+        return await fetch(`/api/wines/${prodId}/image`).then(async (img) => {
+          const imgBlob = await img.blob();
+          const wI = self.wines.findIndex((p) => p._id === prodId);
+          self.wines[wI].img = URL.createObjectURL(imgBlob)
+        })
+      }
+
+      let lengthLoaded = -1;
+      const deepLoad = async () => {
+        lengthLoaded += 1;
+        if (this.wines[lengthLoaded]) {
+          await loadImg(this.wines[lengthLoaded]._id);
+        }
+        if (lengthLoaded < this.wines.length) {
+          deepLoad()
+        }
+      }
+      deepLoad();
     }
   },
   methods: {
