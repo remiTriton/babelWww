@@ -40,7 +40,8 @@
             >
               <router-link :to="{ name: 'Print', params: { id: wine._id } }">
                 <img
-                  v-bind:src="wine.imgBase64"
+                  v-if="isLoaded.indexOf(wine._id) > -1"
+                  :src="`/api/wines/${wine._id}/image`"
                   :alt="wine.cuvee"
                   class="
                     w-auto
@@ -48,7 +49,7 @@
                     object-center object-cover
                     group-hover:opacity-75
                   "
-              /></router-link>
+                /></router-link>
             </div>
             <h3 class="mt-4 text-sm text-gray-700">
               {{ wine.cuvee }}
@@ -81,8 +82,13 @@ import SearchB from "./SearchB.vue";
 
 export default {
   components: { SearchB },
+  data() {
+    return {
+      isLoaded: []
+    };
+  },
   async created() {
-    await this.$store.dispatch("wines/fetchWines");
+    // await this.$store.dispatch("wines/fetchWines");
     await this.$store.dispatch("wines/limitWines", 0);
   },
   computed: {
@@ -93,7 +99,12 @@ export default {
       return this.$store.state.wines.pages;
     },
   },
-
+  watch: {
+    'wines': async function (w) {
+      await fetch(`/api/wines/${w[0]._id}/image`);
+      this.isLoaded.push(w[0]._id);
+    }
+  },
   methods: {
     async search(type, query) {
       await this.$store.dispatch("wines/searchWinesByName", [
@@ -139,15 +150,18 @@ export default {
   margin-right: auto;
   font-size: large;
 }
+
 .pages {
   width: auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .page {
   color: #2a574c;
 }
+
 .back {
   color: white;
 }
