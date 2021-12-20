@@ -42,8 +42,8 @@
                   :src="wine.img"
                   :alt="wine.cuvee"
                   class="
-                    w-auto
-                    h-auto
+                    w-full
+                    h-full
                     object-center object-cover
                     group-hover:opacity-75
                   "
