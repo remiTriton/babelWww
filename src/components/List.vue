@@ -64,7 +64,7 @@
       </div>
       <div class="pages m-10">
         <button
-          v-for="(page, i) in pages.length"
+          v-for="(page, i) in pages"
           :key="i"
           class="text-gray-700 m-5 page"
           @click="changePage(i)"
@@ -90,8 +90,7 @@ export default {
     });
   },
   async created() {
-    await this.$store.dispatch("wines/getPagination");
-    await this.$store.dispatch("wines/limitWines", 0);
+    await this.$store.dispatch("wines/fetchWines", 0);
   },
   computed: {
     wines() {
@@ -100,6 +99,9 @@ export default {
     pages() {
       return this.$store.state.wines.pages;
     },
+    request(){
+      return this.$store.state.wines.request;
+    }
   },
   watch: {
     wines: async function (w) {
@@ -135,7 +137,7 @@ export default {
     },
     async filter(query, value) {
       if (!query) {
-        await this.$store.dispatch("wines/searchWinesByColor", value);
+        await this.$store.dispatch("wines/searchWinesByColor",[value, 0]);
       } else {
         return (this.$store.state.wines.wines = this.wines.filter(
           (m) => m.couleur === value
@@ -146,7 +148,9 @@ export default {
       await this.$store.dispatch("wines/limitWines", 0);
     },
     async changePage(i) {
-      await this.$store.dispatch("wines/limitWines", i * 24);
+     if(!this.request){ await this.$store.dispatch("wines/limitWines", i * 24);}
+     else{await this.$store.dispatch('wines/searchWinesByColor', [ this.request,i *24])}
+
     },
   },
 };

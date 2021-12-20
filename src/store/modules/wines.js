@@ -5,7 +5,8 @@ const wines = {
     wines: [],
     Total: [],
     wine: {},
-    pages: []
+    pages: [],
+    request:'',
   },
 
   mutations: {
@@ -21,26 +22,35 @@ const wines = {
     setPages(state, list) {
       state.pages = list;
     },
+    setRequest(state, list) {
+      state.request = list;
+    },
   },
 
   actions: {
     //ON RECUPERE LES winesS
 
-    async fetchWines(context) {
-      const res = await fetch("/api/wines/")
+    async fetchWines(context, i) {
+      const res = await fetch("/api/wines/all/"+i+"/24")
       const data = await res.json();
-      context.commit("setwines", data);
-
-    },
-    async getPagination(context){
-      const res = await fetch('/api/wines/pages/')
-      const data = await res.json();
+      const wines = data.wines
+      const pages = data.pages
       const catalog = [];
-      for (let i = 0; i < parseInt(data) + 1; i++) {
+      for (let i = 0; i < parseInt(pages) + 1; i++) {
         catalog.push(i);
       }
+      context.commit("setwines", wines);
       context.commit('setPages', catalog)
     },
+    // async getPagination(context){
+    //   const res = await fetch('/api/wines/pages/')
+    //   const data = await res.json();
+    //   const catalog = [];
+    //   for (let i = 0; i < parseInt(data) + 1; i++) {
+    //     catalog.push(i);
+    //   }
+    //   context.commit('setPages', catalog)
+    // },
     //Print d'un wines
 
     async findOnewines(context, _id) {
@@ -65,12 +75,17 @@ const wines = {
     },
 
     //filter by color
-    async searchWinesByColor(context, query) {
-      const res = await fetch("/api/wines/color/" + query)
+    async searchWinesByColor(context,[query,i]) {
+      const res = await fetch("/api/wines/color/" + query +'/'+i+'/24')
       const data = await res.json();
-      context.commit("setwines", data);
+      const catalog = [];
+      for (let i = 0; i < parseInt(data.pagination) + 1; i++) {
+        catalog.push(i);
+      }
+      context.commit('setRequest', query);
+      context.commit('setPages', catalog);
+      context.commit("setwines", data.wine);
     },
-
     //delete one wine
     async deleteWine(context, _id) {
       await fetch("/api/wines/" + _id, {
