@@ -274,7 +274,6 @@
             Bière
           </button></span
         >
-
         <span>
           <button
             class="
