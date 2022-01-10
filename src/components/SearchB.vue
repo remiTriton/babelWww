@@ -269,7 +269,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Bière')"
+            @click="filter('Biere')"
           >
             Bière
           </button></span
