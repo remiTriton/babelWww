@@ -6,7 +6,6 @@ import Footer from '../components/Footer.vue'
 export default {
   components: {
     NavBar, 
-
     Footer,
   }
 }
@@ -17,7 +16,7 @@ export default {
 <NavBar />
 
 <router-view></router-view>
-<Footer />
+<footer class='footer'><Footer /></footer>
 </div>
 </template>
 
@@ -27,10 +26,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color:white;
+  display: flex;
+  flex-direction: column;
 }
 #NavBar {
   background-color: #2a574c;
 }
-
-
 </style>

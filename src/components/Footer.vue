@@ -1,17 +1,9 @@
 <template>
-  <div>
-    <footer class="back">
+<div>
+    <footer class="footer">
       <div
-        class="
-          max-w-7xl
-          mx-auto
-          py-12
-          px-4
-          md:flex md:items-center md:justify-between
-          lg:px-8
-        "
       >
-        <div class="flex justify-center md:order-2">
+        <div class="flex-2 justify-center md:order-2">
           <a
             v-for="item in navigation"
             :key="item.name"
@@ -29,8 +21,7 @@
           </p>
         </div>
       </div>
-    </footer>
-  </div>
+    </footer></div>
 </template>
 
 <script>
@@ -77,12 +68,13 @@ export default {
 };
 </script>
 
-<style scoped>
-.back {
+<style>
+.footer {
   background-color: #2a574c;
   color: white;
   width: 100%;
   position: static;
-  bottom: 0;
+  bottom:0;
+  left:0;
 }
 </style>

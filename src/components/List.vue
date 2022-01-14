@@ -98,14 +98,19 @@ export default {
     pages() {
       return this.$store.state.wines.pages;
     },
-    request(){
+    request() {
       return this.$store.state.wines.request;
-    }
+    },
+    type() {
+      return this.$store.state.wines.type;
+    },
+    searchWord() {
+      return this.$store.state.wines.searchWord;
+    },
   },
   watch: {
     wines: async function (w) {
       const self = this;
-
       const loadImg = async (prodId) => {
         return await fetch(`/api/wines/${prodId}/image`).then(async (img) => {
           const imgBlob = await img.blob();
@@ -132,11 +137,12 @@ export default {
       await this.$store.dispatch("wines/searchWinesByName", [
         type,
         query.charAt(0).toUpperCase() + query.slice(1),
+        0,
       ]);
     },
     async filter(query, value) {
       if (!query) {
-        await this.$store.dispatch("wines/searchWinesByColor",[value, 0]);
+        await this.$store.dispatch("wines/searchWinesByColor", [value, 0]);
       } else {
         return (this.$store.state.wines.wines = this.wines.filter(
           (m) => m.couleur === value
@@ -144,12 +150,23 @@ export default {
       }
     },
     async fetchWines() {
-      await this.$store.dispatch("wines/limitWines", 0);
+      await this.$store.dispatch("wines/fetchWines", 0);
     },
     async changePage(i) {
-     if(!this.request){ await this.$store.dispatch("wines/limitWines", i * 24);}
-     else{await this.$store.dispatch('wines/searchWinesByColor', [ this.request,i *24])}
-
+      if (!this.request && !this.searchWord) {
+        await this.$store.dispatch("wines/fetchWines", i * 24);
+      } else if (this.request) {
+        await this.$store.dispatch("wines/searchWinesByColor", [
+          this.request,
+          i * 24,
+        ]);
+      } else {
+        await this.$store.dispatch("wines/searchWinesByName", [
+          this.type,
+          query,
+          i * 24,
+        ]);
+      }
     },
   },
 };

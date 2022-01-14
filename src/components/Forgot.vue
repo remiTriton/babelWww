@@ -3,7 +3,6 @@
 <label for="Mail">Mail (4 to 8 characters):</label>
 
 <input type="text" class="mt-60 ml-96 pl-96 items-center rounded-full">
-  </div>
   <div>
   <button
        
@@ -35,7 +34,8 @@
             />
           </svg>
         </button>
-  </div>
+  </div>  </div>
+
 </template>
 
 <script>
