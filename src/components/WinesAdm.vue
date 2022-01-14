@@ -483,23 +483,19 @@ export default {
           this.request,
           i * 24,
         ]);
-        console.log(this.type, this.request, this.searchWord);
       } else if (this.type === "prix") {
         await this.$store.dispatch("wines/getWineByPrice", [
          this.price ,
           i * 24,
         ]);
-        console.log(this.type, this.request, this.searchWord);
       } else if (this.searchWord || this.type) {
         await this.$store.dispatch("wines/searchWinesByName", [
           this.type,
           this.searchWord,
           i * 24,
         ]);
-        console.log(this.type, this.request, this.searchWord);
       } else {
         await this.$store.dispatch("wines/fetchWines", i * 24);
-        console.log(this.type, this.request, this.searchWord);
       }
     },
   },

@@ -163,7 +163,7 @@ export default {
       } else {
         await this.$store.dispatch("wines/searchWinesByName", [
           this.type,
-          query,
+          this.searchWord,
           i * 24,
         ]);
       }
