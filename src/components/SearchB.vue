@@ -269,7 +269,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Beer')"
+            @click="filter('Beer', query)"
           >
             Bière
           </button></span
@@ -303,7 +303,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Alcool')"
+            @click="filter('Alcool', query)"
           >
             Alcool
           </button></span

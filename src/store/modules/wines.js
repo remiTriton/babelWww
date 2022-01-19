@@ -6,7 +6,10 @@ const wines = {
     Total: [],
     wine: {},
     pages: [],
-    request:'',
+    request: '',
+    searchWord: '',
+    type: '',
+    price:Number,
   },
 
   mutations: {
@@ -25,13 +28,22 @@ const wines = {
     setRequest(state, list) {
       state.request = list;
     },
+    setSearchWord(state, list) {
+      state.searchWord = list
+    },
+    setType(state, list) {
+      state.type = list
+    },
+    setPrice(state, list) {
+      state.price = list
+    },
   },
 
   actions: {
     //ON RECUPERE LES winesS
 
     async fetchWines(context, i) {
-      const res = await fetch("/api/wines/all/"+i+"/24")
+      const res = await fetch("/api/wines/all/" + i + "/24")
       const data = await res.json();
       const wines = data.wines
       const pages = data.pages
@@ -39,20 +51,12 @@ const wines = {
       for (let i = 0; i < parseInt(pages) + 1; i++) {
         catalog.push(i);
       }
+      context.commit('setRequest', null);
       context.commit("setwines", wines);
-      context.commit('setPages', catalog)
-    },
-    // async getPagination(context){
-    //   const res = await fetch('/api/wines/pages/')
-    //   const data = await res.json();
-    //   const catalog = [];
-    //   for (let i = 0; i < parseInt(data) + 1; i++) {
-    //     catalog.push(i);
-    //   }
-    //   context.commit('setPages', catalog)
-    // },
-    //Print d'un wines
+      context.commit('setPages', catalog);
+      context.commit('setSearchWord', null)
 
+    },
     async findOnewines(context, _id) {
       const res = await fetch("/api/wines/" + _id)
       const data = await res.json();
@@ -63,28 +67,38 @@ const wines = {
       const res = await fetch("/api/wines/" + _id)
       const data = await res.json();
       context.commit("setwine", data.quantite);
-      console.log(data.quantite)
     },
 
     //On cherche un wines 
 
-    async searchWinesByName(context, [type, query]) {
-      const res = await fetch("/api/wines/" + type + "/" + query)
-      const data = await res.json();
-      context.commit("setwines", data);
-    },
-
-    //filter by color
-    async searchWinesByColor(context,[query,i]) {
-      const res = await fetch("/api/wines/color/" + query +'/'+i+'/24')
+    async searchWinesByName(context, [type, query, i]) {
+      const res = await fetch("/api/wines/" + type + "/" + query + "/" + i + "/24")
       const data = await res.json();
       const catalog = [];
       for (let i = 0; i < parseInt(data.pagination) + 1; i++) {
         catalog.push(i);
       }
+      context.commit('setSearchWord', query);
+      context.commit('setType', type)
+      context.commit("setwines", data.wine);
+      context.commit('setPages', catalog);
+      context.commit('setRequest', null);
+    },
+
+    //filter by color
+    async searchWinesByColor(context, [query, i]) {
+      const res = await fetch("/api/wines/color/" + query + '/' + i + '/24')
+      const data = await res.json();
+      const catalog = [];
+      for (let i = 0; i < parseInt(data.pagination) + 1; i++) {
+        catalog.push(i);
+      }
+      context.commit('setType', null)
       context.commit('setRequest', query);
       context.commit('setPages', catalog);
       context.commit("setwines", data.wine);
+      context.commit('setSearchWord', null)
+
     },
     //delete one wine
     async deleteWine(context, _id) {
@@ -124,19 +138,26 @@ const wines = {
         }
       });
     },
-    async getWineByPrice(context, price) {
-      const res = await fetch('/api/wines/price/lowerthan', {
+    async getWineByPrice(context, [price, i]) {
+      const res = await fetch('/api/wines/price/lowerthan/' + i + '/24', {
         "method": "POST",
         headers: {
           "Content-type": "application/json",
           Authorization: 'Bearer ' + localStorage.getItem('token')
         },
         body: JSON.stringify(price),
-
       })
       const data = await res.json();
+      const catalog = [];
+      for (let i = 0; i < parseInt(data.pagination) + 1; i++) {
+        catalog.push(i);
+      }
+      context.commit('setType', "prix");
+      context.commit('setRequest', null);
+      context.commit('setPrice', price);
+      context.commit('setwines', data.wines);
+      context.commit('setPages', catalog);
 
-      context.commit('setwines', data)
 
     },
 
@@ -146,12 +167,6 @@ const wines = {
       const data = await res.json();
       context.commit("setTotal", data)
     },
-
-    async limitWines(context, i) {
-      const res = await fetch("/api/wines/pagination/" + i + "/24")
-      const data = await res.json();
-      context.commit("setwines", data);
-    }
   }
 }
 export default wines;
