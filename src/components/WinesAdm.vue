@@ -372,6 +372,16 @@
             <!-- /End replace -->
           </div>
         </div>
+        <div class="pages m-10">
+          <button
+            v-for="(page, i) in pages"
+            :key="i"
+            class="text-gray-700 m-5 page"
+            @click="changePage(i)"
+          >
+            {{ i + 1 }}
+          </button>
+        </div>
       </main>
     </div>
   </Suspense>
@@ -403,8 +413,14 @@ export default {
     wines() {
       return this.$store.state.wines.wines;
     },
+    pages() {
+      return this.$store.state.wines.pages;
+    },
     order() {
       return this.$store.state.orders.order;
+    },
+    request() {
+      return this.$store.state.wines.request;
     },
   },
   methods: {
@@ -412,7 +428,16 @@ export default {
       this.add = !this.add;
       this.dashboard = !this.dashboard;
     },
-
+    async changePage(i) {
+      if (!this.request) {
+        await this.$store.dispatch("wines/limitWines", i * 24);
+      } else {
+        await this.$store.dispatch("wines/searchWinesByColor", [
+          this.request,
+          i * 24,
+        ]);
+      }
+    },
     async addToOrder(order, wine, quantite) {
       await this.$store.dispatch("orders/addProductToOrder", [
         order,
@@ -421,23 +446,22 @@ export default {
       this.quantite = "";
     },
     async search(type, query) {
-      if(type==='prix'){
-        await this.$store.dispatch("wines/getWineByPrice", {prix:query});
-
-      }else{
-      await this.$store.dispatch("wines/searchWinesByName", [
-        type,
-        query.charAt(0).toUpperCase() + query.slice(1),
-      ]);}
+      if (type === "prix") {
+        await this.$store.dispatch("wines/getWineByPrice", { prix: query });
+      } else {
+        await this.$store.dispatch("wines/searchWinesByName", [
+          type,
+          query.charAt(0).toUpperCase() + query.slice(1),
+        ]);
+      }
     },
     async fetchWines() {
       await this.$store.dispatch("wines/fetchWines");
     },
     async filter(query, value) {
-      console.log(value)
+      console.log(value);
       if (!query) {
-      
-        await this.$store.dispatch("wines/searchWinesByColor", value);
+        await this.$store.dispatch("wines/searchWinesByColor", [value, 0]);
       } else {
         return (this.$store.state.wines.wines = this.wines.filter(
           (m) => m.couleur === value

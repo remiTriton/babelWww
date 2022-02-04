@@ -42,6 +42,8 @@ const wines = {
       context.commit("setwines", wines);
       context.commit('setPages', catalog)
     },
+
+
     // async getPagination(context){
     //   const res = await fetch('/api/wines/pages/')
     //   const data = await res.json();
