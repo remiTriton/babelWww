@@ -269,7 +269,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Beer')"
+            @click="filter('Beer', query)"
           >
             Bière
           </button></span
@@ -303,9 +303,42 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Alcool')"
+            @click="filter('Alcool', query)"
           >
             Alcool
+          </button></span
+        >
+        <span>
+          <button
+            class="
+              test
+              w-35
+              inline-flex
+              items-center
+              px-4
+              py-2
+              border border-transparent
+              text-sm
+              font-medium
+              rounded-full
+              shadow-sm
+              focus:outline-none focus:bg-green-900
+              font-bold
+              hover:text-#2a574c hover:border-transparent
+              br-5
+              rounded
+              inline-block
+              text-xl
+              px-4
+              py-2
+              leading-none
+              border
+              rounded
+              border-white border-2 border-light-blue-500 border-opacity-20
+            "
+            @click="filter('Soft')"
+          >
+            Soft
           </button></span
         >
       </div>

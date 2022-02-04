@@ -406,8 +406,8 @@ export default {
   data() {
     return { quantite: Number };
   },
-  created() {
-    this.$store.dispatch("wines/fetchWines");
+  async created() {
+    this.$store.dispatch("wines/fetchWines", 0);
   },
   computed: {
     wines() {
@@ -419,8 +419,20 @@ export default {
     order() {
       return this.$store.state.orders.order;
     },
+    pages() {
+      return this.$store.state.wines.pages;
+    },
+    type() {
+      return this.$store.state.wines.type;
+    },
+    searchWord() {
+      return this.$store.state.wines.searchWord;
+    },
     request() {
       return this.$store.state.wines.request;
+    },
+    price() {
+      return this.$store.state.wines.price;
     },
   },
   methods: {
@@ -447,19 +459,22 @@ export default {
     },
     async search(type, query) {
       if (type === "prix") {
-        await this.$store.dispatch("wines/getWineByPrice", { prix: query });
+        await this.$store.dispatch("wines/getWineByPrice", [
+          { prix: query },
+          0,
+        ]);
       } else {
         await this.$store.dispatch("wines/searchWinesByName", [
           type,
           query.charAt(0).toUpperCase() + query.slice(1),
+          0,
         ]);
       }
     },
     async fetchWines() {
-      await this.$store.dispatch("wines/fetchWines");
+      await this.$store.dispatch("wines/fetchWines", 0);
     },
     async filter(query, value) {
-      console.log(value);
       if (!query) {
         await this.$store.dispatch("wines/searchWinesByColor", [value, 0]);
       } else {
@@ -472,6 +487,27 @@ export default {
     async Delete(name, id) {
       if (confirm("Attention : Vous êtes sur le point de supprimer " + name)) {
         await this.$store.dispatch("wines/deleteWine", id);
+      }
+    },
+    async changePage(i) {
+      if (this.request) {
+        await this.$store.dispatch("wines/searchWinesByColor", [
+          this.request,
+          i * 24,
+        ]);
+      } else if (this.type === "prix") {
+        await this.$store.dispatch("wines/getWineByPrice", [
+         this.price ,
+          i * 24,
+        ]);
+      } else if (this.searchWord || this.type) {
+        await this.$store.dispatch("wines/searchWinesByName", [
+          this.type,
+          this.searchWord,
+          i * 24,
+        ]);
+      } else {
+        await this.$store.dispatch("wines/fetchWines", i * 24);
       }
     },
   },
