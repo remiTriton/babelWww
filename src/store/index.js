@@ -2,6 +2,8 @@ import Vuex from "vuex";
 import wines from './modules/wines';
 import auth from './modules/auth';
 import orders from './modules/orders';
+import alcools from './modules/alcools';
+
 import createPersistedState from 'vuex-persistedstate'
 
 export default new Vuex.Store({
@@ -16,7 +18,8 @@ export default new Vuex.Store({
   modules: {
     wines,
     auth,
-    orders
+    orders,
+    alcools
   },
   plugins: [createPersistedState(
     { paths: ['auth'] }

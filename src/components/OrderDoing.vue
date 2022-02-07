@@ -42,6 +42,20 @@
                 tracking-wider
               "
             >
+              Domaine
+            </th>
+            <th
+              scope="col"
+              class="
+                px-6
+                py-3
+                text-center text-xs
+                font-medium
+                text-gray-500 text-center
+                uppercase
+                tracking-wider
+              "
+            >
               Couleur
             </th>
             <th
@@ -63,8 +77,10 @@
 
         <tbody v-for="win in order.wines" :key="win.id">
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            <input v-if="order.status != 'Confirmed'" v-model="win.cuvee" />
-            <p v-else class="text-gray-500 text-sm">{{ win.cuvee }}</p>
+            <p class="text-gray-500 text-sm">{{ win.cuvee }}</p>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <p class="text-gray-500 text-sm">{{ win.domaine }}</p>
           </td>
           <td
             class="
@@ -74,8 +90,7 @@
               text-center text-sm text-gray-500
             "
           >
-            <input v-if="order.status != 'Confirmed'" v-model="win.couleur" />
-            <p v-else class="text-gray-500 text-sm">{{ win.couleur }}</p>
+            <p class="text-gray-500 text-sm">{{ win.couleur }}</p>
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             <p class="text-gray-500 text-sm">{{ win.quantite }}</p>
@@ -122,10 +137,7 @@
         </svg></button
     ></router-link>
     <button @click="cancel" class="remove mt-10">
-      <td
-        class="px-6 py-4 whitespace-nowrap"
-        v-if="order"
-      >
+      <td class="px-6 py-4 whitespace-nowrap" v-if="order">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"

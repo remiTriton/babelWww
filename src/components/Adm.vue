@@ -82,6 +82,38 @@
             Vins
           </div>
           <div
+            @click.prevent="toggleAlcools"
+            class="
+              bg-gray-100
+              text-gray-900
+              group
+              flex
+              items-center
+              px-2
+              py-2
+              text-sm
+              font-medium
+              rounded-md
+              mt-5
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+              />
+            </svg>
+            Alcools
+          </div>
+          <div
             @click.prevent="newWine()"
             class="
               bg-gray-100
@@ -236,37 +268,6 @@
             </svg>
             Utilisateurs
           </div>
-          <div
-            @click.prevent="toggleUsers"
-            class="
-              bg-gray-100
-              text-gray-900
-              group
-              flex
-              items-center
-              px-2
-              py-2
-              text-sm
-              font-medium
-              rounded-md
-            "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-              />
-            </svg>
-            Alcools
-          </div>
         </nav>
       </div>
 
@@ -276,6 +277,7 @@
       <div v-if="showUsers"><Users /></div>
       <div v-if="showBills"><Orders /></div>
       <div v-if="showKpi"><Kpi /></div>
+      <div v-if="showAlcool"><AlcAdm /></div>
     </div>
     <div v-else class="text-gray-700">
       <router-link to="/WineList"
@@ -292,6 +294,7 @@ import WinesAdm from "../components/WinesAdm.vue";
 import Users from "../components/Users.vue";
 import Orders from "../components/Orders.vue";
 import Kpi from "../components/Kpi.vue";
+import AlcAdm from "../components/AlcoolAdm.vue";
 
 export default {
   name: "Adm",
@@ -302,6 +305,7 @@ export default {
     Users,
     Orders,
     Kpi,
+    AlcAdm,
   },
   data() {
     return {
@@ -311,6 +315,7 @@ export default {
       showBills: false,
       quantite: "",
       showKpi: false,
+      showAlcool: false,
     };
   },
   computed: {
@@ -331,6 +336,7 @@ export default {
       this.showUsers = true;
       this.showBills = false;
       this.showKpi = false;
+      this.showAlcool = false;
     },
     toggleWines() {
       this.add = false;
@@ -338,11 +344,13 @@ export default {
       this.showUsers = false;
       this.showBills = false;
       this.showKpi = false;
+      this.showAlcool = false;
     },
     toggleBills() {
       this.add = false;
       this.showWines = false;
       this.showUsers = false;
+      this.showAlcool = false;
       this.showBills = true;
       this.showKpi = false;
     },
@@ -351,7 +359,16 @@ export default {
       this.showWines = false;
       this.showUsers = false;
       this.showBills = false;
+      this.showAlcool = false;
       this.showKpi = true;
+    },
+    toggleAlcools() {
+      this.add = false;
+      this.showWines = false;
+      this.showUsers = false;
+      this.showBills = false;
+      this.showKpi = false;
+      this.showAlcool = true;
     },
     async nouveauBon(user) {
       await this.$store.dispatch("orders/newOrder", {

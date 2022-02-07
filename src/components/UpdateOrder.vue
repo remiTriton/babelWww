@@ -31,6 +31,19 @@
                     py-3
                     text-center text-xs
                     font-medium
+                    text-gray-500 text-
+                    uppercase
+                    tracking-wider
+                  "
+                >
+                  Domaine
+                </th>
+                <th
+                  class="
+                    px-6
+                    py-3
+                    text-center text-xs
+                    font-medium
                     text-gray-500
                     uppercase
                     tracking-wider
@@ -56,19 +69,15 @@
 
             <tbody v-for="wine in order.wines" :key="wine.id">
               <td class="apx-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <input
-                  v-if="order.status != 'Confirmed'"
-                  v-model="wine.cuvee"
-                />
-                <p v-else class="text-gray-500 text-sm">{{ wine.cuvee }}</p>
+                <p class="text-gray-500 text-sm">{{ wine.cuvee }}</p>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <input
-                  v-if="order.status != 'Confirmed'"
-                  v-model="wine.couleur"
-                />
-                <p v-else class="text-gray-500 text-sm">{{ wine.couleur }}</p>
+                <p class="text-gray-500 text-sm">{{ wine.domaine }}</p>
               </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <p class="text-gray-500 text-sm">{{ wine.couleur }}</p>
+              </td>
+
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 <input
                   v-if="order.status != 'Confirmed'"

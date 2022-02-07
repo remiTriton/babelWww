@@ -33,7 +33,7 @@
             "
             @click="getAll()"
           >
-            Tous
+            Tous 
           </button></span
         >
         <span>
@@ -64,9 +64,9 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Bulles', query)"
+            @click="filter('Anise', query)"
           >
-            Bulles
+            Anise Mediterranée
           </button></span
         >
 
@@ -98,9 +98,9 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Rouge', query)"
+            @click="filter('Spiritueux', query)"
           >
-            Rouge
+            Spiritueux
           </button></span
         >
 
@@ -132,9 +132,9 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Blanc', query)"
+            @click="filter('Apéritifs', query)"
           >
-            Blanc
+            Apéritifs
           </button></span
         >
 
@@ -165,43 +165,9 @@
               border
               rounded
             "
-            @click="filter('Rosé', query)"
+            @click="filter('Sherry', query)"
           >
-            Rosé
-          </button></span
-        >
-
-        <span>
-          <button
-            class="
-              test
-              w-35
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border border-transparent
-              text-sm
-              font-medium
-              rounded-full
-              shadow-sm
-              focus:outline-none focus:bg-green-900
-              bg-transparent
-              font-bold
-              br-5
-              rounded
-              inline-block
-              text-xl
-              px-4
-              py-2
-              leading-none
-              border
-              rounded
-              border-white border-2 border-light-blue-500 border-opacity-20
-            "
-            @click="filter('Ovni', query)"
-          >
-            Ovni
+            Sherry
           </button></span
         >
 
@@ -233,9 +199,9 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Magnum', query)"
+            @click="filter('Digestifs', query)"
           >
-            Magnum
+            Digestifs Liqueurs
           </button></span
         >
 
@@ -244,19 +210,18 @@
             class="
               test
               w-35
+              inline-flex
+              items-center
+              px-4
+              py-2
+              border border-transparent
+              text-sm
+              font-medium
+              rounded-full
+              shadow-sm
+              focus:outline-none focus:bg-green-900
               bg-transparent
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border border-transparent
-              text-sm
-              font-medium
-              rounded-full
-              shadow-sm
-              focus:outline-none focus:bg-green-900
               font-bold
-              hover:text-#2a574c hover:border-transparent
               br-5
               rounded
               inline-block
@@ -268,74 +233,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Beer', query)"
-          >
-            Bière
-          </button></span
-        >
-
-        <span>
-          <button
-            class="
-              test
-              w-35
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border border-transparent
-              text-sm
-              font-medium
-              rounded-full
-              shadow-sm
-              focus:outline-none focus:bg-green-900
-              font-bold
-              hover:text-#2a574c hover:border-transparent
-              br-5
-              rounded
-              inline-block
-              text-xl
-              px-4
-              py-2
-              leading-none
-              border
-              rounded
-              border-white border-2 border-light-blue-500 border-opacity-20
-            "
-            @click="filter('Alcool', query)"
-          >
-            Alcool
-          </button></span
-        >
-        <span>
-          <button
-            class="
-              test
-              w-35
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border border-transparent
-              text-sm
-              font-medium
-              rounded-full
-              shadow-sm
-              focus:outline-none focus:bg-green-900
-              font-bold
-              hover:text-#2a574c hover:border-transparent
-              br-5
-              rounded
-              inline-block
-              text-xl
-              px-4
-              py-2
-              leading-none
-              border
-              rounded
-              border-white border-2 border-light-blue-500 border-opacity-20
-            "
-            @click="filter('Soft')"
+            @click="filter('Soft', query)"
           >
             Soft
           </button></span
@@ -451,7 +349,7 @@
 
 <script>
 export default {
-  name: "SearchB.vue",
+  name: "SearchAlc",
   data() {
     return {
       query: "",
@@ -467,10 +365,10 @@ export default {
     searchAlcohol(type, query) {
       this.$emit("searchWine", type, query);
     },
-    filter(query, color) {
+    filterAlcool(query, color) {
       this.$emit("color", color, query);
     },
-    getAll(){
+    getAllAlcool(){
       this.$emit("allWines");
     },
   },
