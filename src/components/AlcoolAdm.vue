@@ -414,19 +414,19 @@ export default {
       return this.$store.state.orders.order;
     },
     pages() {
-      return this.$store.state.wines.pages;
+      return this.$store.state.alcools.pages;
     },
     type() {
-      return this.$store.state.wines.type;
+      return this.$store.state.alcools.type;
     },
     searchWord() {
-      return this.$store.state.wines.searchWord;
+      return this.$store.state.alcools.searchWord;
     },
     request() {
-      return this.$store.state.wines.request;
+      return this.$store.state.alcools.request;
     },
     price() {
-      return this.$store.state.wines.price;
+      return this.$store.state.alcools.price;
     },
   },
   methods: {
@@ -471,7 +471,7 @@ export default {
 
     async Delete(name, id) {
       if (confirm("Attention : Vous êtes sur le point de supprimer " + name)) {
-        await this.$store.dispatch("wines/deleteWine", id);
+        await this.$store.dispatch("alcools/deleteAlcool", id);
       }
     },
     async changePage(i) {

@@ -55,7 +55,20 @@ const alcools = {
             context.commit('setPages', catalog);
             context.commit('setSearchWord', null)
             console.log(alcools)
-    }
+    },
+
+    //del one alcohols
+    async deleteAlcool(context, _id) {
+        await fetch("/api/alcools/" + _id, {
+          "method": "DELETE",
+          "headers": {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        });
+        const res = await fetch("/api/alcools/all/0/24")
+        const data = await res.json();
+        context.commit("setAlcools", data.alcools);
+      },
 },
 }
 
