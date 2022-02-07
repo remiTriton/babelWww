@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="formulaire">
-      <form @submit.prevent.stop class="w-full max-w-lg mt-10">
-        ///////
-
+      <button @click.prevent='toggleVin' class="choix h-7 w-16 ml-5 bg-green-700">Vin</button>
+      <button @click.prevent='toggleAlcool' class="choix h-7 w-16 ml-5 bg-green-700">Alcool</button>
+      <form v-if='addVin' @submit.prevent.stop class="w-full max-w-lg mt-10">
         <div class="grid grid-cols-2 gap-8">
           <div>
             <label
@@ -391,7 +391,7 @@
               placeholder="0"
             />
           </div>
-     
+
           <div>
             <label
               class="
@@ -468,13 +468,17 @@
           Submit
         </button>
       </form>
+      <addAlcool v-if='addAlcool' />
     </div>
   </div>
 </template>
 
 <script>
+import addAlcool from './AddAlcool.vue';
+
 export default {
-  name: "SignUp",
+  name: "addLiquid",
+  components:{addAlcool},
   data() {
     return {
       cuvee: "",
@@ -492,11 +496,12 @@ export default {
       imgBase64: "",
       quantite: 0,
       img: "/src/",
+      addVin:true,
+      addAlcool:false,
     };
   },
   methods: {
-
-      previewFile(e) {
+    previewFile(e) {
       const file = e.target.files[0];
       const reader = new FileReader();
       const maxW = 300;
@@ -519,6 +524,16 @@ export default {
       };
       reader.readAsDataURL(file);
     },
+    toggleVin(){
+      this.addVin = true;
+      this.addAlcool = false;
+      console.log("clickclick")
+    },
+    toggleAlcool(){
+     this.addVin = false;
+      this.addAlcool = true;
+      console.log("clickclick") 
+    },
     async createWine() {
       const wine = {
         cuvee: this.cuvee,
@@ -533,7 +548,7 @@ export default {
         pays: this.pays,
         quantite: this.quantite,
         prix: this.prix,
-        imgBase64:this.imgBase64
+        imgBase64: this.imgBase64,
       };
       await this.$store.dispatch("wines/addWine", wine);
       await this.$store.dispatch("wines/fetchWines");
@@ -547,8 +562,14 @@ export default {
   display: flex;
   flex: row;
   justify-content: center;
-
   margin-top: 20px;
+}
+
+.choix{
+    background-color: #2a574c;
+    border-radius:10px;
+    text-align:center;
+    box-shadow: 12px 2px 1px rgba(0, 0, 255, .2);
 }
 
 .info {

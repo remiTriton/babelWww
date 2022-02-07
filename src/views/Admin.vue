@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Adm from "../components/Adm.vue"
+import Adm from "../components/Admin/Adm.vue"
 
 
 export default {

@@ -56,7 +56,20 @@ const alcools = {
             context.commit('setSearchWord', null)
             console.log(alcools)
     },
-
+    //post an alcools request
+    async addAlcool(context, body) {
+        await fetch("/api/alcools/", {
+          "method": "POST",
+          headers: {
+            "Content-Type": "application/json",
+  
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+  
+          },
+          body: JSON.stringify(body)
+        })
+        context.commit('setAlcools')
+      },
     //del one alcohols
     async deleteAlcool(context, _id) {
         await fetch("/api/alcools/" + _id, {

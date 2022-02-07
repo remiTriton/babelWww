@@ -36,24 +36,19 @@ const routes = [{
   component: () => import('./views/Admin.vue'),
 },
 {
-  path: "/Order",
-  name: "OrderSheet",
-  component: () => import('./components/Cart.vue'),
-},
-{
   path: "/update/:id",
   name: "Update",
-  component: () => import('./components/Update.vue'),
+  component: () => import('./components/AdminWines/Update.vue'),
 },
 {
   path: "/:catchAll(.*)",
   name: "NotFound",
-  component: () => import('./components/NotFound.vue'),
+  component: () => import('./components/Admin/NotFound.vue'),
 },
 {
   path: "/updateUser/:id",
   name: "UpdateUser",
-  component: () => import('./components/UpdateUser.vue'),
+  component: () => import('./components/AdminUsers/UpdateUser.vue'),
 },
 
 {

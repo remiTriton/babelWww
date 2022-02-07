@@ -1,7 +1,7 @@
 <template>
   <Suspense>
     <div class="md:pl-60 flex flex-col flex-1 mt-10">
-      <SearchAlc
+      <SearchB
         v-on:searchWine="search"
         v-on:color="filter"
         v-on:allWines="fetchWines"
@@ -203,7 +203,7 @@
                       </thead>
                       <!-- end of category bar -->
                       <tbody>
-                        <tr v-for="alcool in alcools" :key="alcool.id">
+                        <tr v-for="wine in wines" :key="wine.id">
                           <td
                             class="
                               px-6
@@ -215,10 +215,10 @@
                             <router-link
                               :to="{
                                 name: 'Print',
-                                params: { id: alcool._id },
+                                params: { id: wine._id },
                               }"
                             >
-                              {{ alcool.cuvee }}
+                              {{ wine.cuvee }}
                             </router-link>
                           </td>
 
@@ -230,7 +230,7 @@
                               text-sm text-gray-500 text-center text-xs
                             "
                           >
-                            {{ alcool.quantite }}
+                            {{ wine.quantite }}
                           </td>
 
                           <td
@@ -241,7 +241,7 @@
                               text-sm text-gray-500 text-center text-xs
                             "
                           >
-                            {{ alcool.type }}
+                            {{ wine.couleur }}
                           </td>
 
                           <td
@@ -252,7 +252,7 @@
                               text-sm text-gray-500 text-center text-xs
                             "
                           >
-                            {{ alcool.prix }} €
+                            {{ wine.prix }} €
                           </td>
 
                           <td
@@ -263,7 +263,7 @@
                               text-sm text-gray-500 text-center text-xs
                             "
                           >
-                            {{ parseFloat(alcool.prix * 1.2).toFixed(2) }} €
+                            {{ parseFloat(wine.prix * 1.2).toFixed(2) }} €
                           </td>
                           <td v-if="order && order._id">
                             <input
@@ -308,7 +308,7 @@
                                 focus:ring-offset-2
                                 focus:ring-#2a574c-500
                               "
-                              @click="addToOrder(order._id, alcool._id, quantite)"
+                              @click="addToOrder(order._id, wine._id, quantite, wine.domaine)"
                             >
                               <PlusSmIconSolid
                                 class="h-5 w-5"
@@ -330,7 +330,7 @@
                             <router-link
                               :to="{
                                 name: 'Update',
-                                params: { id: alcool._id },
+                                params: { id: wine._id },
                               }"
                             >
                               <button
@@ -347,7 +347,7 @@
                           <td>
                             <button
                               class="text-red-600 hover:text-red-900"
-                              @click.prevent="Delete(alcool.cuvee, alcool._id)"
+                              @click.prevent="Delete(wine.cuvee, wine._id)"
                             >
                               Delete
                             </button>
@@ -391,42 +391,45 @@
 import Multiselect from "@vueform/multiselect";
 import { PlusSmIcon as PlusSmIconSolid } from "@heroicons/vue/solid";
 import { PlusSmIcon as PlusSmIconOutline } from "@heroicons/vue/outline";
-import SearchAlc from "./SearchAlc.vue";
-import OrderDoing from "./OrderDoing.vue";
+import SearchB from "../SearchB.vue";
+import OrderDoing from "../AdminOrders/OrderDoing.vue";
 
 export default {
-  name: "AlcAdm",
+  name: "WinesAdm",
   components: {
     Multiselect,
     PlusSmIconOutline,
     PlusSmIconSolid,
-    SearchAlc,
+    SearchB,
     OrderDoing,
   },
+  data() {
+    return { quantite: Number };
+  },
   async created() {
-    this.$store.dispatch("alcools/fetchAlcools", 0);
+    this.$store.dispatch("wines/fetchWines", 0);
   },
   computed: {
-    alcools() {
-      return this.$store.state.alcools.alcools;
+    wines() {
+      return this.$store.state.wines.wines;
     },
     order() {
       return this.$store.state.orders.order;
     },
     pages() {
-      return this.$store.state.alcools.pages;
+      return this.$store.state.wines.pages;
     },
     type() {
-      return this.$store.state.alcools.type;
+      return this.$store.state.wines.type;
     },
     searchWord() {
-      return this.$store.state.alcools.searchWord;
+      return this.$store.state.wines.searchWord;
     },
     request() {
-      return this.$store.state.alcools.request;
+      return this.$store.state.wines.request;
     },
     price() {
-      return this.$store.state.alcools.price;
+      return this.$store.state.wines.price;
     },
   },
   methods: {
@@ -471,7 +474,7 @@ export default {
 
     async Delete(name, id) {
       if (confirm("Attention : Vous êtes sur le point de supprimer " + name)) {
-        await this.$store.dispatch("alcools/deleteAlcool", id);
+        await this.$store.dispatch("wines/deleteWine", id);
       }
     },
     async changePage(i) {
@@ -498,6 +501,7 @@ export default {
   },
 };
 </script>
+<style src="@vueform/multiselect/themes/default.css"></style>
 
 <style scoped>
 .round {

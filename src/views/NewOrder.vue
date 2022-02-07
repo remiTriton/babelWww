@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import WinesAdmOrder from "../components/WinesAdm.vue";
-import NewOrder from "../components/UpdateOrder.vue";
+import WinesAdmOrder from "../components/AdminWines/WinesAdm.vue";
+import NewOrder from "../components/AdminOrders/UpdateOrder.vue";
 export default {
   components: { NewOrder, WinesAdmOrder },
   data() {

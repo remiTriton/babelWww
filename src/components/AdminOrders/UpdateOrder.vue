@@ -170,7 +170,7 @@
 </template>
 
 <script>
-import WinesAdm from "./WinesAdm.vue";
+import WinesAdm from "../AdminWines/WinesAdm.vue";
 export default {
   name: "newOrder",
   components: {

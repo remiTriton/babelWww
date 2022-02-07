@@ -288,13 +288,13 @@
 </template>
 
 <script>
-import OrderDoing from "./OrderDoing.vue";
-import Add from "../components/Add.vue";
-import WinesAdm from "../components/WinesAdm.vue";
-import Users from "../components/Users.vue";
-import Orders from "../components/Orders.vue";
-import Kpi from "../components/Kpi.vue";
-import AlcAdm from "../components/AlcoolAdm.vue";
+import OrderDoing from "../AdminOrders/OrderDoing.vue";
+import Add from "../AdminWines/Add.vue";
+import WinesAdm from "../AdminWines/WinesAdm.vue";
+import Users from "../AdminUsers/Users.vue";
+import Orders from "../AdminOrders/Orders.vue";
+import Kpi from "./Kpi.vue";
+import AlcAdm from "../AdminWines/AlcoolAdm.vue";
 
 export default {
   name: "Adm",
