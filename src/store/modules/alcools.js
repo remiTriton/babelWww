@@ -51,11 +51,12 @@ const alcools = {
                 catalog.push(i);
             }
             context.commit('setRequest', null);
+            context.commit('setPrice', null);
+            context.commit('setType', null)
             context.commit("setAlcools", alcools);
             context.commit('setPages', catalog);
             context.commit('setSearchWord', null)
-            console.log(alcools)
-    },
+            },
     //post an alcools request
     async addAlcool(context, body) {
         await fetch("/api/alcools/", {
@@ -82,6 +83,56 @@ const alcools = {
         const data = await res.json();
         context.commit("setAlcools", data.alcools);
       },
+      //recherche par type d'alcools 
+      async FilterByType(context, [query, i]) {
+        const res = await fetch("/api/alcools/" + query + '/' + i + '/24')
+        const data = await res.json();
+        const catalog = [];
+        for (let i = 0; i < parseInt(data.pagination) + 1; i++) {
+          catalog.push(i);
+        }
+        context.commit('setType', null)
+        context.commit('setRequest', query);
+        context.commit('setPages', catalog);
+        context.commit("setAlcools", data.alcools);
+        context.commit('setSearchWord', null)
+      },
+
+
+      async SearchAlcool(context, [type, query, i]) {
+        const res = await fetch("/api/alcools/" + type + "/" + query + "/" + i + "/24")
+        const data = await res.json();
+        const catalog = [];
+        for (let i = 0; i < parseInt(data.pagination) + 1; i++) {
+          catalog.push(i);
+        }
+        context.commit('setSearchWord', query);
+        context.commit('setType', type)
+        context.commit("setAlcools", data.alcools);
+        context.commit('setPages', catalog);
+        context.commit('setRequest', null);
+      },
+      async AlcoolByPrice(context, [price, i]) {
+        const res = await fetch('/api/alcools/price/' + i + '/24', {
+          "method": "POST",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          },
+          body: JSON.stringify(price),
+        })
+        const data = await res.json();
+        const catalog = [];
+        for (let i = 0; i < parseInt(data.pagination) + 1; i++) {
+          catalog.push(i);
+        }
+        context.commit('setType', "prix");
+        context.commit('setRequest', null);
+        context.commit('setPrice', price);
+        context.commit('setAlcools', data.alcools);
+        context.commit('setPages', catalog);
+      },
+
 },
 }
 

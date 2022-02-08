@@ -2,9 +2,9 @@
   <Suspense>
     <div class="md:pl-60 flex flex-col flex-1 mt-10">
       <SearchAlc
-        v-on:searchWine="search"
-        v-on:color="filter"
-        v-on:allWines="fetchWines"
+        v-on:searchAlcool="searchAlcool"
+        v-on:filterAlcool="filter"
+        v-on:AllAlcools="fetchAlcools"
       />
       <main class="flex-1">
         <div class="py-6">
@@ -102,7 +102,7 @@
                               text-center text-xs
                             "
                           >
-                            Couleur
+                            Type
                           </th>
                           <th
                             scope="col"
@@ -308,7 +308,9 @@
                                 focus:ring-offset-2
                                 focus:ring-#2a574c-500
                               "
-                              @click="addToOrder(order._id, alcool._id, quantite)"
+                              @click="
+                                addToOrder(order._id, alcool._id, quantite)
+                              "
                             >
                               <PlusSmIconSolid
                                 class="h-5 w-5"
@@ -438,33 +440,33 @@ export default {
     async addToOrder(order, wine, quantite, domaine) {
       await this.$store.dispatch("orders/addProductToOrder", [
         order,
-        { id: wine, quantite: quantite, domaine:domaine },
+        { id: wine, quantite: quantite, domaine: domaine },
       ]);
       this.quantite = "";
     },
-    async search(type, query) {
+    async searchAlcool(type, query) {
       if (type === "prix") {
-        await this.$store.dispatch("wines/getWineByPrice", [
+        await this.$store.dispatch("alcools/AlcoolByPrice", [
           { prix: query },
           0,
         ]);
       } else {
-        await this.$store.dispatch("wines/searchWinesByName", [
+        await this.$store.dispatch("alcools/SearchAlcool", [
           type,
           query.charAt(0).toUpperCase() + query.slice(1),
           0,
         ]);
       }
     },
-    async fetchWines() {
-      await this.$store.dispatch("wines/fetchWines", 0);
+    async fetchAlcools() {
+      await this.$store.dispatch("alcools/fetchAlcools", 0);
     },
     async filter(query, value) {
       if (!query) {
-        await this.$store.dispatch("wines/searchWinesByColor", [value, 0]);
+        await this.$store.dispatch("alcools/FilterByType", [value, 0]);
       } else {
-        return (this.$store.state.wines.wines = this.wines.filter(
-          (m) => m.couleur === value
+        return (this.$store.state.alcools.alcools = this.alcools.filter(
+          (m) => m.type === value
         ));
       }
     },
@@ -476,17 +478,17 @@ export default {
     },
     async changePage(i) {
       if (this.request) {
-        await this.$store.dispatch("wines/searchWinesByColor", [
+        await this.$store.dispatch("alcools/FilterByType", [
           this.request,
           i * 24,
         ]);
       } else if (this.type === "prix") {
         await this.$store.dispatch("wines/getWineByPrice", [
-         this.price ,
+          this.price,
           i * 24,
         ]);
       } else if (this.searchWord || this.type) {
-        await this.$store.dispatch("wines/searchWinesByName", [
+        await this.$store.dispatch("alcools/SearchAlcool", [
           this.type,
           this.searchWord,
           i * 24,

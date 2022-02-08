@@ -104,7 +104,7 @@
                 focus:outline-none focus:bg-white
               "
               id="grid-millesime"
-              type="text"
+              type="number"
             />
           </div>
           <div>
@@ -220,7 +220,6 @@
           <div>
             <label
               class="
-                info
                 uppercase
                 tracking-wide
                 text-gray-700 text-xs
@@ -350,7 +349,7 @@ export default {
         imgBase64: this.imgBase64,
       };
       await this.$store.dispatch("alcools/addAlcool", alcool);
-      await this.$store.dispatch("alcools/fetchAlcools",0);
+      await this.$store.dispatch("alcools/fetchAlcools", 0);
     },
   },
 };
@@ -365,11 +364,7 @@ export default {
   margin-top: 20px;
 }
 
-.info {
-  color: black;
-}
-
-.sub {
+ .sub {
   margin-top: 20px;
 }
 .col {

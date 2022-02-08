@@ -157,8 +157,6 @@ const wines = {
       context.commit('setPrice', price);
       context.commit('setwines', data.wines);
       context.commit('setPages', catalog);
-
-
     },
 
     async wineKpi(context) {

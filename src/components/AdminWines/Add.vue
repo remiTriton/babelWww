@@ -395,7 +395,6 @@
           <div>
             <label
               class="
-                info
                 uppercase
                 tracking-wide
                 text-gray-700 text-xs
@@ -416,14 +415,14 @@
                 appearance-none
                 block
                 bg-gray-200
-                text-black
+                text-gray-700
                 rounded
                 py-3
                 px-4
                 mb-3
                 leading-tight
                 focus:outline-none focus:bg-white
-                text-gray-500
+                text-gray-700
               "
               id="grid-description"
               type="text"
@@ -572,9 +571,6 @@ export default {
     box-shadow: 12px 2px 1px rgba(0, 0, 255, .2);
 }
 
-.info {
-  color: black;
-}
 
 .sub {
   margin-top: 20px;

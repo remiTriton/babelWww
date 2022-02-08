@@ -31,9 +31,9 @@
               rounded
               border-2 border-light-blue-500 border-opacity-20
             "
-            @click="getAll()"
+            @click="getAllAlcools()"
           >
-            Tous 
+            Tous
           </button></span
         >
         <span>
@@ -64,7 +64,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Anise', query)"
+            @click="filterAlcool('Anise', query)"
           >
             Anise Mediterranée
           </button></span
@@ -98,7 +98,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Spiritueux', query)"
+            @click="filterAlcool('Spiritueux', query)"
           >
             Spiritueux
           </button></span
@@ -132,7 +132,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Apéritifs', query)"
+            @click="filterAlcool('Apéritifs', query)"
           >
             Apéritifs
           </button></span
@@ -165,7 +165,7 @@
               border
               rounded
             "
-            @click="filter('Sherry', query)"
+            @click="filterAlcool('Sherry', query)"
           >
             Sherry
           </button></span
@@ -199,7 +199,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Digestifs', query)"
+            @click="filterAlcool('Digestifs', query)"
           >
             Digestifs Liqueurs
           </button></span
@@ -233,7 +233,7 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Soft', query)"
+            @click="filterAlcool('Soft', query)"
           >
             Soft
           </button></span
@@ -241,7 +241,7 @@
       </div>
       <div class="flex flex-col items-center text-black">
         <div class="left" @submit.prevent.stop>
-          <button type="submit" @click.prevent="searchWine(type, query)">
+          <button type="submit" @click.prevent="searchAlcool(type, query)">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-4 h-4 text-gray-600"
@@ -258,7 +258,7 @@
             </svg>
           </button>
           <input
-            v-on:keyup.enter="searchWine(type, query)"
+            v-on:keyup.enter="searchAlcool(type, query)"
             type="text"
             name="name"
             placeholder="Search..."
@@ -281,7 +281,7 @@
                   class="form-radio"
                   name="accountType"
                   v-model="type"
-                  value="search"
+                  value="cuvee"
                 />
                 <span class="text-gray-500 ml-2">Cuvée</span>
               </label>
@@ -290,45 +290,25 @@
                   type="radio"
                   class="form-radio"
                   name="accountType"
-                  value="domaine"
+                  value="centilitrage"
                   v-model="type"
                 />
-                <span class="text-gray-500 ml-2">Domaine</span>
+                <span class="text-gray-500 ml-2">Centilitrage</span>
               </label>
               <label class="inline-flex items-center ml-6">
                 <input
                   type="radio"
                   class="form-radio"
                   name="accountType"
-                  value="pays"
+                  value="producteur"
                   v-model="type"
                 />
-                <span class="text-gray-500 ml-2">Pays</span>
+                <span class="text-gray-500 ml-2">Producteur</span>
               </label>
-              <label class="inline-flex items-center ml-6">
-                <input
-                  type="radio"
-                  class="form-radio"
-                  name="accountType"
-                  v-model="type"
-                  value="region"
-                />
-                <span class="text-gray-500 ml-2">Région</span>
-              </label>
-              <label class="inline-flex items-center ml-6">
-                <input
-                  type="radio"
-                  class="form-radio"
-                  name="accountType"
-                  v-model="type"
-                  value="cepage"
-                />
-                <span class="text-gray-500 ml-2">Cépage</span>
-              </label>
+
               <label
                 class="inline-flex items-center ml-6"
                 v-if="auth && auth.user.role != 'Serveur'"
-                
               >
                 <input
                   type="radio"
@@ -362,14 +342,14 @@ export default {
     },
   },
   methods: {
-    searchAlcohol(type, query) {
-      this.$emit("searchWine", type, query);
+    searchAlcool(type, query) {
+      this.$emit("searchAlcool", type, query);
     },
-    filterAlcool(query, color) {
-      this.$emit("color", color, query);
+    filterAlcool(query, type) {
+      this.$emit("filterAlcool", type, query);
     },
-    getAllAlcool(){
-      this.$emit("allWines");
+    getAllAlcools() {
+      this.$emit("AllAlcools");
     },
   },
 };
