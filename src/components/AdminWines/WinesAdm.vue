@@ -214,7 +214,7 @@
                           >
                             <router-link
                               :to="{
-                                name: 'Print',
+                                name: 'Vin',
                                 params: { id: wine._id },
                               }"
                             >

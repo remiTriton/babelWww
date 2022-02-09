@@ -57,6 +57,14 @@ const alcools = {
             context.commit('setPages', catalog);
             context.commit('setSearchWord', null)
             },
+
+//get One Alcool 
+async OneAlcool(context, _id) {
+  const res = await fetch("/api/alcools/" + _id)
+  const data = await res.json();
+  context.commit("setAlcool", data);
+},
+
     //post an alcools request
     async addAlcool(context, body) {
         await fetch("/api/alcools/", {

@@ -4,7 +4,7 @@
 
 <script>
 
-import SignUp from '../components/SignUp.vue'
+import SignUp from '../components/Utils/SignUp.vue'
 
 export default {
   name: "Register.vue",

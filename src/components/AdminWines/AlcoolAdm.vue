@@ -214,7 +214,7 @@
                           >
                             <router-link
                               :to="{
-                                name: 'Print',
+                                name: 'Vin',
                                 params: { id: alcool._id },
                               }"
                             >
@@ -483,7 +483,7 @@ export default {
           i * 24,
         ]);
       } else if (this.type === "prix") {
-        await this.$store.dispatch("wines/getWineByPrice", [
+        await this.$store.dispatch("alcools/AlcoolByPrice", [
           this.price,
           i * 24,
         ]);

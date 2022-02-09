@@ -5,7 +5,7 @@
         <div class="lg:flex lg:items-center ">
           <div class="text-sm relative">
             <router-link to="/WineList" class="text-teal-200 hover:text-white">
-              <img class="bb" src="../assets/Arches.png" atl="" />
+              <img class="bb" src="../assets/Arches.png" atl="Babel Wines" />
             </router-link>
           </div>
 <div class="flex ">
