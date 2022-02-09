@@ -214,7 +214,7 @@
                           >
                             <router-link
                               :to="{
-                                name: 'Vin',
+                                name: 'Alcool',
                                 params: { id: alcool._id },
                               }"
                             >
@@ -331,7 +331,7 @@
                           >
                             <router-link
                               :to="{
-                                name: 'Update',
+                                name: 'UpdateAlcool',
                                 params: { id: alcool._id },
                               }"
                             >

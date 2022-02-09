@@ -63,6 +63,7 @@ const wines = {
       context.commit("setwine", data);
     },
 
+    //On recupere quantite de bouteilles
     async getWineQuantity(context, _id) {
       const res = await fetch("/api/wines/" + _id)
       const data = await res.json();

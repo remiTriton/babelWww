@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white flex ">
+  <div class="min-h-screen bg-white flex">
     <div
       class="
         flex-1 flex flex-col
@@ -11,22 +11,20 @@
         xl:px-24
       "
     >
-      <div class="mx-auto w-full max-w-sm lg:w-96 mb-60" >
+      <div class="mx-auto w-full max-w-sm lg:w-96 mb-60">
         <div>
           <h2 v-if="!val" class="mt-6 text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+            Connectez-vous à votre compte
           </h2>
           <h2 v-if="val" class="mt-6 text-3xl font-extrabold text-gray-900">
-            Please type your mail to reset your password
+            Veuillez saisir votre adresse email pour réinitialiser votre mot de
+            passe
           </h2>
         </div>
 
         <div class="mt-8">
           <div>
-            <div>
-             
-
-            </div>
+            <div></div>
             <div class="mt-6 relative">
               <div
                 class="absolute inset-0 flex items-center"
@@ -36,7 +34,7 @@
               </div>
               <div class="relative flex justify-center text-sm">
                 <span class="px-2 bg-white text-gray-500">
-                  Or continue with
+                  Remplissez vos informations
                 </span>
               </div>
             </div>
@@ -49,7 +47,7 @@
                   for="email"
                   class="block text-sm font-medium text-gray-700"
                 >
-                  Email address
+                  Email
                 </label>
                 <div class="mt-1">
                   <input
@@ -82,10 +80,10 @@
                   for="password"
                   class="block text-sm font-medium text-gray-700"
                 >
-                  Password
+                  Mot de passe
                 </label>
                 <div class="mt-1">
-                  <input 
+                  <input
                     v-model="password"
                     name="password"
                     type="password"
@@ -111,40 +109,19 @@
               </div>
 
               <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                  <input
-                    id="remember-me"
-                    name="remember-me"
-                    type="checkbox"
-                    class="
-                      h-4
-                      w-4
-                      text-indigo-600
-                      focus:ring-indigo-500
-                      border-gray-300
-                      rounded
-                    "
-                  />
-                  <label
-                    for="remember-me"
-                    class="ml-2 block text-sm text-gray-900"
-                  >
-                    Remember me
-                  </label>
-                </div>
-
                 <div class="text-sm">
-                  <div @click="toggleVal"
-                    
+                  <div
+                    @click="toggleVal"
                     class="font-medium text-indigo-600 hover:text-indigo-500"
                   >
-                    Forgot your password?
+                    Mot de passe oublié ?
                   </div>
                 </div>
               </div>
 
               <div>
-                <button v-if="!val"
+                <button
+                  v-if="!val"
                   class="
                     But
                     bg-blue
@@ -158,10 +135,11 @@
                   type="submit"
                   @click="Log"
                 >
-                  Sign Up
+                  Se Connecter
                 </button>
-            
-                <button v-if="val"
+
+                <button
+                  v-if="val"
                   class="
                     But
                     bg-blue
@@ -175,7 +153,7 @@
                   type="submit"
                   @click="send(email)"
                 >
-                  Send Mail
+                  Envoyer un mail
                 </button>
               </div>
             </form>
@@ -187,7 +165,7 @@
       <img
         class="absolute inset-0 h-full w-full object-cover"
         src="../assets/ter.png"
-        alt=""
+        alt="Connection"
       />
     </div>
   </div>
@@ -203,10 +181,10 @@ export default {
       val: false,
     };
   },
-  computed:{
-    auth(){
+  computed: {
+    auth() {
       return this.$store.state.auth.user;
-    }
+    },
   },
   methods: {
     async Log() {
@@ -214,21 +192,20 @@ export default {
         email: this.email,
         password: this.password,
       };
-      await this.$store.dispatch('auth/login',logger)
-      if(this.auth.user.role === 'Admin'){
-        this.$router.push('/Admin')
-      }else{
-        this.$router.push('/WineList')
-      };
+      await this.$store.dispatch("auth/login", logger);
+      if (this.auth.user.role === "Admin") {
+        this.$router.push("/Admin");
+      } else {
+        this.$router.push("/WineList");
+      }
     },
-    toggleVal(){
-      this.val = !this.val
+    toggleVal() {
+      this.val = !this.val;
     },
-async send(email){
-  await this.$store.dispatch('auth/forgottenPassword',{email: email});
-  this.val = false;
-}
-
+    async send(email) {
+      await this.$store.dispatch("auth/forgottenPassword", { email: email });
+      this.val = false;
+    },
   },
 };
 </script>

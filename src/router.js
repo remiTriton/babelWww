@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [{
   path: '/',
   name: 'Home',
-  component: () => import('./components/Utils/Log.vue'),
+  component: () => import('./components/Log.vue'),
 },
 {
   path: "/login",
@@ -15,7 +15,6 @@ const routes = [{
   name: "Register",
   component: () => import('./views/Register.vue'),
 },
-
 {
   path: "/WineList",
   name: "WineList",
@@ -25,7 +24,6 @@ const routes = [{
   path:'/alcool/:id',
   name:'Alcool',
   component: () => import('./components/catalog/AlcoolUnique.vue'),
-
 },
 {
   path: "/vin/:id",
@@ -52,7 +50,11 @@ const routes = [{
   name: "UpdateUser",
   component: () => import('./components/AdminUsers/UpdateUser.vue'),
 },
-
+{
+  path: "/updateAlcool/:id",
+  name: "UpdateAlcool",
+  component: () => import('./components/AdminWines/UpdateAlcool.vue'),
+},
 {
   path: "/updateOrder/:id",
   name: "updateOrder",

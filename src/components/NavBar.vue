@@ -24,7 +24,7 @@
                   text-white
                   border-white
                 "
-                >Login</router-link
+                >Se connecter</router-link
               >
 
               <router-link
@@ -41,7 +41,7 @@
                   text-white
                   border-white
                 "
-                >Register</router-link
+                >S'enregistrer</router-link
               >
               <button
                 v-if="auth"
@@ -58,7 +58,7 @@
                 "
                 @click.prevent="logout"
               >
-                Logout
+                Se déconnecter
               </button>
 
               <router-link
