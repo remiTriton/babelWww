@@ -473,9 +473,9 @@ export default {
     },
 
     async Delete(name, id) {
-      if (confirm("Attention : Vous êtes sur le point de supprimer " + name)) {
+      // if (confirm("Attention : Vous êtes sur le point de supprimer " + name)) {
         await this.$store.dispatch("wines/deleteWine", id);
-      }
+      // }
     },
     async changePage(i) {
       if (this.request) {

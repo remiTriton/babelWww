@@ -109,9 +109,6 @@ const wines = {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
       });
-      const res = await fetch("/api/wines/")
-      const data = await res.json();
-      context.commit("setwines", data);
     },
 
     async addWine(context, body) {

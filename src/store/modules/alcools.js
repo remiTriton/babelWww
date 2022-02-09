@@ -154,7 +154,12 @@ const alcools = {
       context.commit('setAlcools', data.alcools);
       context.commit('setPages', catalog);
     },
-
+    async alcoolKpi(context) {
+      const res = await fetch("/api/alcools/allAlcools/kpi"
+      );
+      const data = await res.json();
+      context.commit("setTotalAlcool", data)
+    },
   },
 }
 

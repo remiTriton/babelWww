@@ -23,6 +23,17 @@
                     sm:rounded-lg
                   "
                 >
+                  <p
+                    class="
+                      text-gray-500 text-xs
+                      font-medium
+                      uppercase
+                      text-center
+                    "
+                  >
+                    Vins
+                  </p>
+
                   <table class="w-full">
                     <thead class="bg-gray-50">
                       <th
@@ -70,24 +81,23 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="vin in Total[0]" :key="vin.id"> 
+                      <tr v-for="vin in Total[0]" :key="vin.id">
                         <td
                           class="
                             px-6
                             py-4
-                             text-center text-xs
+                            text-center text-xs
                             whitespace-nowrap
                             text-sm text-gray-500
                           "
                         >
-                            {{ vin._id }}
-                       
+                          {{ vin._id }}
                         </td>
                         <td
                           class="
                             px-6
                             py-4
-                             text-center text-xs
+                            text-center text-xs
                             whitespace-nowrap
                             text-sm text-gray-500
                           "
@@ -99,20 +109,20 @@
                           class="
                             px-6
                             py-4
-                             text-center text-xs
+                            text-center text-xs
                             whitespace-nowrap
                             text-sm text-gray-500
                           "
                         >
                           {{ vin.prices }} €
                         </td>
-                        </tr>
-                      <tr v-for="tot in Total[1]" :key="tot.id"> 
-                      <td
+                      </tr>
+                      <tr v-for="tot in Total[1]" :key="tot.id">
+                        <td
                           class="
                             px-8
                             py-4
-                             text-center text-xs
+                            text-center text-xs
                             whitespace-nowrap
                             text-sm text-gray-500
                             bg-gray-200
@@ -120,31 +130,173 @@
                         >
                           Total :
                         </td>
-                    <td
+                        <td
                           class="
                             px-6
                             py-4
-                             text-center text-xs
+                            text-center text-xs
                             whitespace-nowrap
                             text-sm text-gray-500
                             bg-gray-200
                           "
                         >
-                          {{tot.quantite}}
+                          {{ tot.quantite }}
                         </td>
                         <td
                           class="
                             px-6
                             py-4
-                             text-center text-xs
+                            text-center text-xs
                             whitespace-nowrap
                             text-sm text-gray-500
                             bg-gray-200
                           "
                         >
-                          {{tot.prices}} €
+                          {{ tot.prices }} €
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                  <div
+                  class="
+                    shadow
+                    overflow-hidden
+                    border-b border-gray-200
+                    sm:rounded-lg
+                  "
+                >
+                  <p
+                    class="
+                      text-gray-500 text-xs
+                      font-medium
+                      uppercase
+                      text-center
+                    "
+                  >
+                    Alcools
+                  </p>
+
+                  <table class="w-full">
+                    <thead class="bg-gray-50">
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-center text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Type
+                      </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-center text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Quantité Totale
+                      </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-center text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        PAHT Total
+                      </th>
+                    </thead>
+
+                    <tbody>
+                      <tr v-for="alcool in TotalAlcool[0]" :key="alcool.id">
+                        <td
+                          class="
+                            px-6
+                            py-4
+                            text-center text-xs
+                            whitespace-nowrap
+                            text-sm text-gray-500
+                          "
+                        >
+                          {{ alcool._id }}
+                        </td>
+                        <td
+                          class="
+                            px-6
+                            py-4
+                            text-center text-xs
+                            whitespace-nowrap
+                            text-sm text-gray-500
+                          "
+                        >
+                          {{ alcool.quantite }}
                         </td>
 
+                        <td
+                          class="
+                            px-6
+                            py-4
+                            text-center text-xs
+                            whitespace-nowrap
+                            text-sm text-gray-500
+                          "
+                        >
+                          {{ alcool.prices }} €
+                        </td>
+                      </tr>
+                      <tr v-for="totAlc in TotalAlcool[1]" :key="totAlc.id">
+                        <td
+                          class="
+                            px-8
+                            py-4
+                            text-center text-xs
+                            whitespace-nowrap
+                            text-sm text-gray-500
+                            bg-gray-200
+                          "
+                        >
+                          Total :
+                        </td>
+                        <td
+                          class="
+                            px-6
+                            py-4
+                            text-center text-xs
+                            whitespace-nowrap
+                            text-sm text-gray-500
+                            bg-gray-200
+                          "
+                        >
+                          {{ totAlc.quantite }}
+                        </td>
+                        <td
+                          class="
+                            px-6
+                            py-4
+                            text-center text-xs
+                            whitespace-nowrap
+                            text-sm text-gray-500
+                            bg-gray-200
+                          "
+                        >
+                          {{ totAlc.prices }} €
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -159,22 +311,24 @@
 </template>
 
 <script>
-
 export default {
-name :"Kpi",
+  name: "Kpi",
 
-created() {
+  created() {
     this.$store.dispatch("wines/wineKpi");
+    this.$store.dispatch("alcools/alcoolKpi");
   },
 
-computed: {
-    Total () {
+  computed: {
+    Total() {
       return this.$store.state.wines.Total;
-    }
+    },
+    TotalAlcool() {
+      return this.$store.state.alcools.TotalAlcool;
+    },
   },
-}
+};
 </script>
 
 <style>
-
 </style>
