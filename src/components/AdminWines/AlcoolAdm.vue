@@ -66,7 +66,7 @@
                               py-3
                               text-center text-xs
                               font-medium
-                              text-gray-900
+                              text-gray-500
                               uppercase
                               tracking-wider
                               text-center text-xs
@@ -167,7 +167,7 @@
                               text-center text-xs
                             "
                           >
-                            Add
+                            Ajouter
                           </th>
                           <th
                             scope="col"
@@ -182,7 +182,7 @@
                               text-center text-xs
                             "
                           >
-                            Edit
+                            Editer
                           </th>
                           <th
                             scope="col"
@@ -197,7 +197,7 @@
                               text-center text-xs
                             "
                           >
-                            Delete
+                            Supprimer
                           </th>
                         </tr>
                       </thead>
@@ -309,7 +309,12 @@
                                 focus:ring-#2a574c-500
                               "
                               @click="
-                                addToOrder(order._id, alcool._id, quantite)
+                                addToOrder(
+                                  order._id,
+                                  alcool._id,
+                                  alcool.centilitrage,
+                                  quantite
+                                )
                               "
                             >
                               <PlusSmIconSolid
@@ -342,7 +347,7 @@
                                   ml-5
                                 "
                               >
-                                Update
+                                Editer
                               </button>
                             </router-link>
                           </td>
@@ -351,7 +356,7 @@
                               class="text-red-600 hover:text-red-900"
                               @click.prevent="Delete(alcool.cuvee, alcool._id)"
                             >
-                              Delete
+                              Supprimer
                             </button>
                           </td>
                         </tr>
@@ -398,6 +403,9 @@ import OrderDoing from "../AdminOrders/OrderDoing.vue";
 
 export default {
   name: "AlcAdm",
+  data() {
+    return { quantite: Number };
+  },
   components: {
     Multiselect,
     PlusSmIconOutline,
@@ -437,10 +445,10 @@ export default {
       this.dashboard = !this.dashboard;
     },
 
-    async addToOrder(order, wine, quantite, domaine) {
-      await this.$store.dispatch("orders/addProductToOrder", [
+    async addToOrder(order, alcool, type, quantite) {
+      await this.$store.dispatch("orders/addAlcoolToCommand", [
         order,
-        { id: wine, quantite: quantite, domaine: domaine },
+        { id: alcool, quantite: quantite, type: type },
       ]);
       this.quantite = "";
     },

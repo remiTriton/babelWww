@@ -56,7 +56,7 @@
                 tracking-wider
               "
             >
-              Couleur
+              Couleur / Type
             </th>
             <th
               scope="col"
@@ -75,7 +75,8 @@
           </tr>
         </thead>
 
-        <tbody v-for="win in order.wines" :key="win.id">
+        <tbody>
+          <tr  v-for="win in order.wines" :key="win.id">
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             <p class="text-gray-500 text-sm">{{ win.cuvee }}</p>
           </td>
@@ -94,7 +95,29 @@
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             <p class="text-gray-500 text-sm">{{ win.quantite }}</p>
+          </td></tr>
+                    <tr class='bg-gray-100' v-for="alcool in order.alcools" :key="alcool.id">
+   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <p class="text-gray-500 text-sm">{{ alcool.cuvee }}</p>
           </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <p class="text-gray-500 text-sm">{{ alcool.centilitrage }} cl</p>
+          </td>
+          <td
+            class="
+              px-6
+              py-4
+              whitespace-nowrap
+              text-center text-sm text-gray-500
+            "
+          >
+            <p class="text-gray-500 text-sm">{{ alcool.type }}</p>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <p class="text-gray-500 text-sm">{{ alcool.quantite }}</p>
+          </td>
+
+</tr>
         </tbody>
       </table>
     </div>

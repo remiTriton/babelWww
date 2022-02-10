@@ -160,6 +160,7 @@
                 </div>
                   <div
                   class="
+                  mt-10
                     shadow
                     overflow-hidden
                     border-b border-gray-200
@@ -182,8 +183,7 @@
                       <th
                         scope="col"
                         class="
-                          px-6
-                          py-3
+                          
                           text-center text-xs
                           font-medium
                           text-gray-500

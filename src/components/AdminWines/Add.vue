@@ -441,8 +441,7 @@
               "
               for="grid-download"
             >
-              Download images
-            </label>
+Télécharger image            </label>
             <input type="file" @change="previewFile" />
             <canvas ref="canvas" />
           </div>
@@ -526,12 +525,10 @@ export default {
     toggleVin(){
       this.addVin = true;
       this.addAlcool = false;
-      console.log("clickclick")
     },
     toggleAlcool(){
      this.addVin = false;
       this.addAlcool = true;
-      console.log("clickclick") 
     },
     async createWine() {
       const wine = {

@@ -66,7 +66,7 @@
                               py-3
                               text-center text-xs
                               font-medium
-                              text-gray-900
+                              text-gray-500
                               uppercase
                               tracking-wider
                               text-center text-xs
@@ -167,7 +167,7 @@
                               text-center text-xs
                             "
                           >
-                            Add
+                            Ajouter
                           </th>
                           <th
                             scope="col"
@@ -182,7 +182,7 @@
                               text-center text-xs
                             "
                           >
-                            Edit
+                            Editer
                           </th>
                           <th
                             scope="col"
@@ -197,7 +197,7 @@
                               text-center text-xs
                             "
                           >
-                            Delete
+                            Supprimer
                           </th>
                         </tr>
                       </thead>
@@ -340,7 +340,7 @@
                                   ml-5
                                 "
                               >
-                                Update
+                                Editer
                               </button>
                             </router-link>
                           </td>
@@ -349,7 +349,7 @@
                               class="text-red-600 hover:text-red-900"
                               @click.prevent="Delete(wine.cuvee, wine._id)"
                             >
-                              Delete
+                              Supprimer
                             </button>
                           </td>
                         </tr>

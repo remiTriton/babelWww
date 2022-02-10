@@ -266,7 +266,7 @@
               "
               for="grid-download"
             >
-              Download images
+              Télécharger une image
             </label>
             <input type="file" @change="previewFile" />
             <canvas ref="canvas" />
@@ -289,7 +289,7 @@
           type="submit"
           @click="newAlcool"
         >
-          Submit
+          Envoyer
         </button>
       </form>
     </div>

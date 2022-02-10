@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="selection">
-      <button class="selector text-gray-700" @click.prevent="toggleWines()">
+    <div class="selection ml-24">
+      <button class="selector" @click.prevent="toggleWines()">
         Vins
       </button>
-      <button class="text-gray-700 selector" @click.prevent="toggleAlcools()">
+      <button class="selector" @click.prevent="toggleAlcools()">
         Alcools
       </button>
     </div>
@@ -42,4 +42,12 @@ export default {
 </script>
 
 <style scoped>
+.selector{
+  background-color: #2a574c;
+  margin:5px;
+  width:150px;
+  height:25px;
+  border-radius:15px;
+  box-shadow: 10px 5px 5px gray;
+}
 </style>
