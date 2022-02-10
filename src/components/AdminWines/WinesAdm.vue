@@ -308,7 +308,14 @@
                                 focus:ring-offset-2
                                 focus:ring-#2a574c-500
                               "
-                              @click="addToOrder(order._id, wine._id, quantite, wine.domaine)"
+                              @click="
+                                addToOrder(
+                                  order._id,
+                                  wine._id,
+                                  quantite,
+                                  wine.domaine
+                                )
+                              "
                             >
                               <PlusSmIconSolid
                                 class="h-5 w-5"
@@ -319,11 +326,10 @@
 
                           <td
                             class="
-                              px-6
-                              py-4
+                            
                               text-center text-xs
                               whitespace-nowrap
-                              text-sm text-gray-500
+                              text-sm text-indigo-700
                               ml-5
                             "
                           >
@@ -335,16 +341,27 @@
                             >
                               <button
                                 class="
-                                  text-center text-xs text-indigo-600
-                                  hover:text-indigo-900
-                                  ml-5
+                              
+                                  whitespace-nowrap
+                                 text-sm
+                                  font-medium
+                                  text-center 
                                 "
                               >
                                 Editer
                               </button>
                             </router-link>
                           </td>
-                          <td>
+                          <td
+                            class="
+                              px-6
+                              py-4
+                              whitespace-nowrap
+                              text-right text-sm
+                              font-medium
+                              text-center text-xs
+                            "
+                          >
                             <button
                               class="text-red-600 hover:text-red-900"
                               @click.prevent="Delete(wine.cuvee, wine._id)"
@@ -441,7 +458,7 @@ export default {
     async addToOrder(order, wine, quantite, domaine) {
       await this.$store.dispatch("orders/addProductToOrder", [
         order,
-        { id: wine, quantite: quantite, domaine:domaine },
+        { id: wine, quantite: quantite, domaine: domaine },
       ]);
       this.quantite = "";
     },
@@ -474,7 +491,7 @@ export default {
 
     async Delete(name, id) {
       // if (confirm("Attention : Vous êtes sur le point de supprimer " + name)) {
-        await this.$store.dispatch("wines/deleteWine", id);
+      await this.$store.dispatch("wines/deleteWine", id);
       // }
     },
     async changePage(i) {
@@ -485,7 +502,7 @@ export default {
         ]);
       } else if (this.type === "prix") {
         await this.$store.dispatch("wines/getWineByPrice", [
-         this.price ,
+          this.price,
           i * 24,
         ]);
       } else if (this.searchWord || this.type) {

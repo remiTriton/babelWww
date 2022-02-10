@@ -328,10 +328,9 @@
                             class="
                               px-6
                               py-4
-                              text-center text-xs
                               whitespace-nowrap
-                              text-sm text-gray-500
-                              ml-5
+                              font-medium
+                              text-center text-xs
                             "
                           >
                             <router-link
@@ -342,16 +341,23 @@
                             >
                               <button
                                 class="
-                                  text-center text-xs text-indigo-600
-                                  hover:text-indigo-900
-                                  ml-5
+                                  text-xs
+                                  whitespace-nowrap
+                                  text-sm text-indigo-700
                                 "
                               >
                                 Editer
                               </button>
                             </router-link>
                           </td>
-                          <td>
+                          <td
+                            class="
+                              whitespace-nowrap
+                              text-sm
+                              font-medium
+                              text-center
+                            "
+                          >
                             <button
                               class="text-red-600 hover:text-red-900"
                               @click.prevent="Delete(alcool.cuvee, alcool._id)"

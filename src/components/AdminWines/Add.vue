@@ -1,9 +1,19 @@
 <template>
   <div>
     <div class="formulaire">
-      <button @click.prevent='toggleVin' class="choix h-7 w-16 ml-5 bg-green-700">Vin</button>
-      <button @click.prevent='toggleAlcool' class="choix h-7 w-16 ml-5 bg-green-700">Alcool</button>
-      <form v-if='addVin' @submit.prevent.stop class="w-full max-w-lg mt-10">
+      <button
+        @click.prevent="toggleVin"
+        class="choix h-7 w-16 ml-5 bg-green-700"
+      >
+        Vin
+      </button>
+      <button
+        @click.prevent="toggleAlcool"
+        class="choix h-7 w-16 ml-5 bg-green-700"
+      >
+        Alcool
+      </button>
+      <form v-if="addVin" @submit.prevent.stop class="w-full max-w-lg mt-10">
         <div class="grid grid-cols-2 gap-8">
           <div>
             <label
@@ -441,7 +451,8 @@
               "
               for="grid-download"
             >
-Télécharger image            </label>
+              Télécharger image
+            </label>
             <input type="file" @change="previewFile" />
             <canvas ref="canvas" />
           </div>
@@ -463,20 +474,20 @@ Télécharger image            </label>
           type="submit"
           @click="createWine"
         >
-          Submit
+          Ajouter
         </button>
       </form>
-      <addAlcool v-if='addAlcool' />
+      <addAlcool v-if="addAlcool" />
     </div>
   </div>
 </template>
 
 <script>
-import addAlcool from './AddAlcool.vue';
+import addAlcool from "./AddAlcool.vue";
 
 export default {
   name: "addLiquid",
-  components:{addAlcool},
+  components: { addAlcool },
   data() {
     return {
       cuvee: "",
@@ -494,8 +505,8 @@ export default {
       imgBase64: "",
       quantite: 0,
       img: "/src/",
-      addVin:true,
-      addAlcool:false,
+      addVin: true,
+      addAlcool: false,
     };
   },
   methods: {
@@ -522,12 +533,12 @@ export default {
       };
       reader.readAsDataURL(file);
     },
-    toggleVin(){
+    toggleVin() {
       this.addVin = true;
       this.addAlcool = false;
     },
-    toggleAlcool(){
-     this.addVin = false;
+    toggleAlcool() {
+      this.addVin = false;
       this.addAlcool = true;
     },
     async createWine() {
@@ -561,13 +572,12 @@ export default {
   margin-top: 20px;
 }
 
-.choix{
-    background-color: #2a574c;
-    border-radius:10px;
-    text-align:center;
-    box-shadow: 12px 2px 1px rgba(0, 0, 255, .2);
+.choix {
+  background-color: #2a574c;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 12px 2px 1px rgba(0, 0, 255, 0.2);
 }
-
 
 .sub {
   margin-top: 20px;

@@ -289,7 +289,7 @@
           type="submit"
           @click="newAlcool"
         >
-          Envoyer
+          Ajouter
         </button>
       </form>
     </div>

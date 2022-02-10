@@ -6,8 +6,11 @@
           class="mx-60 ml-58 mr-16 mt-10 border-dashed border-2 border-gray-600"
           v-if="order"
         >
-          <button class="text-gray-700" @click.prevent="newWineInOrder">
+          <button class="rajout" @click.prevent="newWineInOrder">
             Rajouter un vin
+          </button>
+          <button class="rajout" @click.prevent="newAlcoolInOrder">
+            Rajouter un alcool
           </button>
           <table class="table-auto mx-auto mt-5">
             <thead>
@@ -81,13 +84,37 @@
 
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <input
-                    v-if="order.status != 'Confirmed'"
+                    v-if="order.status != 'Validé'"
                     v-model="wine.quantite"
                     type="number"
                   />
                   <p v-else class="text-gray-500 text-sm">
                     {{ wine.quantite }}
                   </p>
+                </td>
+
+                <td v-if="order.status != 'Confirmed'">
+                  <button
+                    @click.prevent="
+                      updateOrd(wine.cuvee, wine.couleur, wine.quantite)
+                    "
+                    class="text-gray-500"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                      />
+                    </svg>
+                  </button>
                 </td>
                 <button @click.prevent="Delete(wine.wineId)" class="remove">
                   <td
@@ -109,29 +136,6 @@
                     </svg>
                   </td>
                 </button>
-                <td v-if="order.status != 'Confirmed'">
-                  <button
-                    @click.prevent="
-                      updateOrd(wine.cuvee, wine.couleur, wine.quantite)
-                    "
-                    class="text-black"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                      />
-                    </svg>
-                  </button>
-                </td>
               </tr>
               <tr v-for="alcool in order.alcools" :key="alcool.id">
                 <td class="apx-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -146,7 +150,7 @@
 
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <input
-                    v-if="order.status != 'Confirmed'"
+                    v-if="order.status != 'Validé'"
                     v-model="alcool.quantite"
                     type="number"
                   />
@@ -203,12 +207,14 @@
               </tr>
             </tbody>
           </table>
-          <div class="ml-5">Commandé par : {{ order.userEmail }}</div>
+          <div class="ml-5 mt-24 text-center text-sm">
+            Commandé par : {{ order.userEmail }}
+          </div>
           <button
             @click.prevent="confirm()"
             class="
               on
-              ml-32
+              ml-80
               mt-10
               mb-10
               hover:bg-blue-700
@@ -216,6 +222,7 @@
               px-4
               rounded-full
               text-white
+              center
             "
           >
             <svg
@@ -223,7 +230,7 @@
               class="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              stroke="white"
               text-white
             >
               <path
@@ -235,22 +242,27 @@
             </svg>
           </button>
         </div>
+        <WinesAdm v-if="addWine && order.status != 'Validé'" />
+        <AlcAdm v-if="addAlcool && order.status != 'Validé'" />
       </div>
     </Suspense>
-    <WinesAdm v-if="addWine && order.status != 'Confirmed'" />
   </div>
 </template>
 
 <script>
 import WinesAdm from "../AdminWines/WinesAdm.vue";
+import AlcAdm from "../AdminWines/AlcoolAdm.vue";
+
 export default {
   name: "newOrder",
   components: {
     WinesAdm,
+    AlcAdm,
   },
   data() {
     return {
       addWine: false,
+      addAlcool: false,
     };
   },
   created() {
@@ -276,11 +288,11 @@ export default {
       ]);
       await this.$store.dispatch("orders/findOneOrder", this.$route.params.id);
     },
-    search(query) {
-      return order.filter((order) => {
-        return this.order.wines.cuvee.indexOf(query) > -1;
-      });
-    },
+    // search(query) {
+    //   return order.filter((order) => {
+    //     return this.order.wines.cuvee.indexOf(query) > -1;
+    //   });
+    // },
     async Delete(id) {
       if (confirm("Attention : Vous êtes sur le point de supprimer ")) {
         await this.$store.dispatch("orders/delWine", [
@@ -306,7 +318,7 @@ export default {
       }
     },
     async confirm() {
-      if (this.order.status == "Confirmed") {
+      if (this.order.status == "Validé") {
         console.log("nope");
         return;
       } else {
@@ -331,7 +343,7 @@ export default {
               ]);
             }
           }
-          if (this.order.alcools) {
+          else if (this.order.alcools) {
             for (let i = 0; i < this.order.alcools.length; i++) {
               const res = await fetch(
                 "/api/alcools/" + this.order.alcools[i].alcoolId
@@ -350,7 +362,7 @@ export default {
           await this.$store.dispatch("orders/validateOrder", [
             this.$route.params.id,
             {
-              status: "Confirmed",
+              status: "Validé",
             },
           ]);
         }
@@ -359,6 +371,9 @@ export default {
     },
     newWineInOrder() {
       this.addWine = !this.addWine;
+    },
+    newAlcoolInOrder() {
+      this.addAlcool = !this.addAlcool;
     },
   },
 };
@@ -371,5 +386,14 @@ export default {
 .round {
   background-color: #2a574c;
   color: white;
+}
+
+.rajout {
+  background-color: #2a574c;
+  color: white;
+  margin: 15px;
+  width: 150px;
+  height: 30px;
+  border-radius: 25px;
 }
 </style>
