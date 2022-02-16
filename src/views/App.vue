@@ -26,7 +26,7 @@ export default {
   color: white;
   display: flex;
   flex-direction: column;
-  padding-bottom:150px;
+  padding-bottom:300px;
 }
 #NavBar {
   background-color: #2a574c;

@@ -25,8 +25,9 @@
                 >
                   <p
                     class="
+                      mb-10
                       text-gray-500 text-xs
-                      font-medium
+                      font-bold
                       uppercase
                       text-center
                     "
@@ -158,9 +159,9 @@
                     </tbody>
                   </table>
                 </div>
-                  <div
+                <div
                   class="
-                  mt-10
+                    pt-24
                     shadow
                     overflow-hidden
                     border-b border-gray-200
@@ -169,8 +170,9 @@
                 >
                   <p
                     class="
+                      pb-10
                       text-gray-500 text-xs
-                      font-medium
+                      font-bold
                       uppercase
                       text-center
                     "
@@ -183,7 +185,8 @@
                       <th
                         scope="col"
                         class="
-                          
+                          px-6
+                          py-3
                           text-center text-xs
                           font-medium
                           text-gray-500
@@ -227,8 +230,6 @@
                       <tr v-for="alcool in TotalAlcool[0]" :key="alcool.id">
                         <td
                           class="
-                            px-6
-                            py-4
                             text-center text-xs
                             whitespace-nowrap
                             text-sm text-gray-500
@@ -296,6 +297,103 @@
                           "
                         >
                           {{ totAlc.prices }} €
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p
+                    class="
+                      pt-10
+                      pb-10
+                      text-gray-500 text-xs
+                      font-bold
+                      uppercase
+                      text-center
+                    "
+                  >
+                    Bilan
+                  </p>
+                  <table class="w-full">
+                    <thead class="bg-gray-50">
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-center text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      ></th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-center text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        Quantité Totale
+                      </th>
+                      <th
+                        scope="col"
+                        class="
+                          px-6
+                          py-3
+                          text-center text-xs
+                          font-medium
+                          text-gray-500
+                          uppercase
+                          tracking-wider
+                        "
+                      >
+                        PAHT Total
+                      </th>
+                    </thead>
+
+                    <tbody v-for="totAlc in TotalAlcool[1]" :key="totAlc.id">
+                      <tr v-for="tot in Total[1]" :key="tot.id">
+                        <td
+                          class="
+                            px-8
+                            py-4
+                            text-center text-xs
+                            whitespace-nowrap
+                            text-sm text-gray-500
+                            bg-gray-200
+                          "
+                        >
+                          Total :
+                        </td>
+                        <td
+                          class="
+                            px-6
+                            py-4
+                            text-center text-xs
+                            whitespace-nowrap
+                            text-sm text-gray-500
+                            bg-gray-200
+                          "
+                        >
+                          {{ totAlc.quantite + tot.quantite }}
+                        </td>
+                        <td
+                          class="
+                            px-6
+                            py-4
+                            text-center text-xs
+                            whitespace-nowrap
+                            text-sm text-gray-500
+                            bg-gray-200
+                          "
+                        >
+                          {{ totAlc.prices + tot.prices }} €
                         </td>
                       </tr>
                     </tbody>
