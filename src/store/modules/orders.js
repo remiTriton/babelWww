@@ -88,6 +88,21 @@ const orders = {
       context.commit('setOrder', data)
     },
 
+    //on ajoute un alcool au bon de
+    async addAlcoolToCommand(context, [id, order]) {
+      const res = await fetch("/api/orders/addAlcool/" + id, {
+        "method": "PUT",
+        body: JSON.stringify(order),
+        "headers": {
+          "Content-type": "application/json",
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+
+        }
+      })
+      const data = await res.json();
+      context.commit('setOrder', data)
+    },
+
     //On valide un bon ( plus modifiable par la suite )
     async validateOrder(context, [id, body]) {
       await fetch("/api/orders/validate/" + id, {

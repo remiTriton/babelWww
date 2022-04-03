@@ -42,7 +42,21 @@
                 tracking-wider
               "
             >
-              Couleur
+              Domaine
+            </th>
+            <th
+              scope="col"
+              class="
+                px-6
+                py-3
+                text-center text-xs
+                font-medium
+                text-gray-500 text-center
+                uppercase
+                tracking-wider
+              "
+            >
+              Couleur / Type
             </th>
             <th
               scope="col"
@@ -61,10 +75,13 @@
           </tr>
         </thead>
 
-        <tbody v-for="win in order.wines" :key="win.id">
+        <tbody>
+          <tr  v-for="win in order.wines" :key="win.id">
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            <input v-if="order.status != 'Confirmed'" v-model="win.cuvee" />
-            <p v-else class="text-gray-500 text-sm">{{ win.cuvee }}</p>
+            <p class="text-gray-500 text-sm">{{ win.cuvee }}</p>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <p class="text-gray-500 text-sm">{{ win.domaine }}</p>
           </td>
           <td
             class="
@@ -74,12 +91,33 @@
               text-center text-sm text-gray-500
             "
           >
-            <input v-if="order.status != 'Confirmed'" v-model="win.couleur" />
-            <p v-else class="text-gray-500 text-sm">{{ win.couleur }}</p>
+            <p class="text-gray-500 text-sm">{{ win.couleur }}</p>
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             <p class="text-gray-500 text-sm">{{ win.quantite }}</p>
+          </td></tr>
+                    <tr class='bg-gray-100' v-for="alcool in order.alcools" :key="alcool.id">
+   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <p class="text-gray-500 text-sm">{{ alcool.cuvee }}</p>
           </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <p class="text-gray-500 text-sm">{{ alcool.centilitrage }} cl</p>
+          </td>
+          <td
+            class="
+              px-6
+              py-4
+              whitespace-nowrap
+              text-center text-sm text-gray-500
+            "
+          >
+            <p class="text-gray-500 text-sm">{{ alcool.type }}</p>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <p class="text-gray-500 text-sm">{{ alcool.quantite }}</p>
+          </td>
+
+</tr>
         </tbody>
       </table>
     </div>
@@ -121,16 +159,21 @@
           />
         </svg></button
     ></router-link>
-    <button @click="cancel" class="remove mt-10">
-      <td
-        class="px-6 py-4 whitespace-nowrap"
-        v-if="order"
-      >
+    <button @click="cancel" v-if="order" class="on
+          ml-10
+          mt-10
+          mb-10
+          hover:bg-blue-700
+          text-white
+          font-bold
+          py-2
+          px-4
+          rounded-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
           fill="none"
-          stroke="red"
+          stroke="white"
         >
           <path
             stroke-linecap="round"
@@ -139,7 +182,6 @@
             d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-      </td>
     </button>
     >
   </div>

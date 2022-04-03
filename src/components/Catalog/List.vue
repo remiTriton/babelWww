@@ -36,7 +36,7 @@
               "
               v-if="wine._id"
             >
-              <router-link :to="{ name: 'Print', params: { id: wine._id } }">
+              <router-link :to="{ name: 'Vin', params: { id: wine._id } }">
                 <img
                   v-if="wine.img"
                   :src="wine.img"
@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import SearchB from "./SearchB.vue";
+import SearchB from "../SearchB.vue";
 
 export default {
   components: { SearchB },

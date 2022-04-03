@@ -1,15 +1,21 @@
 <template>
-<div>
+  <div>
     <footer class="footer">
       <div
+        class="
+          max-w-7xl
+          mx-auto
+          md:flex md:items-center md:justify-between
+          lg:px-8
+          
+        "
       >
-        <div class="flex-2 justify-center md:order-2">
+        <div class="flex justify-center  md:order-2">
           <a
             v-for="item in navigation"
             :key="item.name"
             :href="item.href"
-            target="_blank"
-            class="text-gray-400 hover:text-white"
+            class="text-gray-400 mt-4 hover:text-white"
           >
             <span class="sr-only">{{ item.name }}</span>
             <component :is="item.icon" class="h-6 w-6" aria-hidden="true" />
@@ -21,7 +27,8 @@
           </p>
         </div>
       </div>
-    </footer></div>
+    </footer>
+  </div>
 </template>
 
 <script>
@@ -71,10 +78,10 @@ export default {
 <style>
 .footer {
   background-color: #2a574c;
-  color: white;
+  overflow:hidden;
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  position: static;
-  bottom:0;
-  left:0;
+  height:50px;
 }
 </style>

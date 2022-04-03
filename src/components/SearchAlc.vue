@@ -31,12 +31,11 @@
               rounded
               border-2 border-light-blue-500 border-opacity-20
             "
-            @click="getAll()"
+            @click="getAllAlcools()"
           >
             Tous
           </button></span
         >
-
         <span>
           <button
             class="
@@ -65,9 +64,9 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Bulles', query)"
+            @click="filterAlcool('Anise', query)"
           >
-            Bulles
+            Anise Mediterranée
           </button></span
         >
 
@@ -99,9 +98,9 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Rouge', query)"
+            @click="filterAlcool('Spiritueux', query)"
           >
-            Rouge
+            Spiritueux
           </button></span
         >
 
@@ -133,9 +132,9 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Blanc', query)"
+            @click="filterAlcool('Apéritifs', query)"
           >
-            Blanc
+            Apéritifs
           </button></span
         >
 
@@ -166,43 +165,9 @@
               border
               rounded
             "
-            @click="filter('Rosé', query)"
+            @click="filterAlcool('Sherry', query)"
           >
-            Rosé
-          </button></span
-        >
-
-        <span>
-          <button
-            class="
-              test
-              w-35
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border border-transparent
-              text-sm
-              font-medium
-              rounded-full
-              shadow-sm
-              focus:outline-none focus:bg-green-900
-              bg-transparent
-              font-bold
-              br-5
-              rounded
-              inline-block
-              text-xl
-              px-4
-              py-2
-              leading-none
-              border
-              rounded
-              border-white border-2 border-light-blue-500 border-opacity-20
-            "
-            @click="filter('Ovni', query)"
-          >
-            Ovni
+            Sherry
           </button></span
         >
 
@@ -234,9 +199,9 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Magnum', query)"
+            @click="filterAlcool('Digestifs', query)"
           >
-            Magnum
+            Digestifs Liqueurs
           </button></span
         >
 
@@ -245,7 +210,6 @@
             class="
               test
               w-35
-              bg-transparent
               inline-flex
               items-center
               px-4
@@ -256,8 +220,8 @@
               rounded-full
               shadow-sm
               focus:outline-none focus:bg-green-900
+              bg-transparent
               font-bold
-              hover:text-#2a574c hover:border-transparent
               br-5
               rounded
               inline-block
@@ -269,15 +233,15 @@
               rounded
               border-white border-2 border-light-blue-500 border-opacity-20
             "
-            @click="filter('Beer', query)"
+            @click="filterAlcool('Soft', query)"
           >
-            Bière
+            Soft
           </button></span
         >
       </div>
       <div class="flex flex-col items-center text-black">
         <div class="left" @submit.prevent.stop>
-          <button type="submit" @click.prevent="searchWine(type, query)">
+          <button type="submit" @click.prevent="searchAlcool(type, query)">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-4 h-4 text-gray-600"
@@ -294,7 +258,7 @@
             </svg>
           </button>
           <input
-            v-on:keyup.enter="searchWine(type, query)"
+            v-on:keyup.enter="searchAlcool(type, query)"
             type="text"
             name="name"
             placeholder="Search..."
@@ -317,7 +281,7 @@
                   class="form-radio"
                   name="accountType"
                   v-model="type"
-                  value="search"
+                  value="cuvee"
                 />
                 <span class="text-gray-500 ml-2">Cuvée</span>
               </label>
@@ -326,45 +290,25 @@
                   type="radio"
                   class="form-radio"
                   name="accountType"
-                  value="domaine"
+                  value="centilitrage"
                   v-model="type"
                 />
-                <span class="text-gray-500 ml-2">Domaine</span>
+                <span class="text-gray-500 ml-2">Centilitrage</span>
               </label>
               <label class="inline-flex items-center ml-6">
                 <input
                   type="radio"
                   class="form-radio"
                   name="accountType"
-                  value="pays"
+                  value="producteur"
                   v-model="type"
                 />
-                <span class="text-gray-500 ml-2">Pays</span>
+                <span class="text-gray-500 ml-2">Producteur</span>
               </label>
-              <label class="inline-flex items-center ml-6">
-                <input
-                  type="radio"
-                  class="form-radio"
-                  name="accountType"
-                  v-model="type"
-                  value="region"
-                />
-                <span class="text-gray-500 ml-2">Région</span>
-              </label>
-              <label class="inline-flex items-center ml-6">
-                <input
-                  type="radio"
-                  class="form-radio"
-                  name="accountType"
-                  v-model="type"
-                  value="cepage"
-                />
-                <span class="text-gray-500 ml-2">Cépage</span>
-              </label>
+
               <label
                 class="inline-flex items-center ml-6"
                 v-if="auth && auth.user.role != 'Serveur'"
-                
               >
                 <input
                   type="radio"
@@ -385,7 +329,7 @@
 
 <script>
 export default {
-  name: "SearchB.vue",
+  name: "SearchAlc",
   data() {
     return {
       query: "",
@@ -398,14 +342,14 @@ export default {
     },
   },
   methods: {
-    searchWine(type, query) {
-      this.$emit("searchWine", type, query);
+    searchAlcool(type, query) {
+      this.$emit("searchAlcool", type, query);
     },
-    filter(query, color) {
-      this.$emit("color", color, query);
+    filterAlcool(query, type) {
+      this.$emit("filterAlcool", type, query);
     },
-    getAll(){
-      this.$emit("allWines");
+    getAllAlcools() {
+      this.$emit("AllAlcools");
     },
   },
 };

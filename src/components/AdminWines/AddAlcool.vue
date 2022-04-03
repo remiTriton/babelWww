@@ -2,8 +2,6 @@
   <div>
     <div class="formulaire">
       <form @submit.prevent.stop class="w-full max-w-lg mt-10">
-        ///////
-
         <div class="grid grid-cols-2 gap-8">
           <div>
             <label
@@ -39,40 +37,7 @@
               type="text"
             />
           </div>
-          <div>
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="grid-domaine"
-            >
-              Domaine
-            </label>
-            <input
-              v-model="domaine"
-              class="
-                border border-gray-200
-                appearance-none
-                block
-                w-full
-                bg-gray-200
-                text-gray-700
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-              "
-              id="grid-domaine"
-              type="text"
-            />
-          </div>
+
           <div>
             <label
               class="
@@ -85,10 +50,10 @@
               "
               for="grid-vigneron"
             >
-              Vigneron
+              Producteur
             </label>
             <input
-              v-model="vigneron"
+              v-model="producteur"
               class="
                 border border-gray-200
                 appearance-none
@@ -107,147 +72,7 @@
               type="text"
             />
           </div>
-          <div>
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="grid-cepage"
-            >
-              Cépage
-            </label>
-            <input
-              v-model="cepage"
-              class="
-                border border-gray-200
-                appearance-none
-                block
-                w-full
-                bg-gray-200
-                text-gray-700
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-              "
-              id="grid-cepage"
-              type="text"
-            />
-          </div>
-          <div>
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="grid-pays"
-            >
-              Pays
-            </label>
-            <select
-              v-model="pays"
-              class="
-                border border-gray-200
-                appearance-none
-                block
-                w-full
-                bg-gray-200
-                text-gray-700
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-              "
-              id="grid-pays"
-            >
-              <option>France</option>
-              <option>Italie</option>
-              <option>Espagne</option>
-              <option>Grêce</option>
-              <option>Croatie</option>
-            </select>
-          </div>
-          <div>
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="grid-region"
-            >
-              Région
-            </label>
-            <input
-              v-model="region"
-              class="
-                border border-gray-200
-                appearance-none
-                block
-                w-full
-                bg-gray-200
-                text-gray-700
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-              "
-              id="grid-region"
-              type="text"
-            />
-          </div>
-          <div>
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="grid-departement"
-            >
-              Département
-            </label>
-            <input
-              v-model="departement"
-              class="
-                border border-gray-200
-                appearance-none
-                block
-                w-full
-                bg-gray-200
-                text-gray-700
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-              "
-              id="grid-departement"
-              type="text"
-            />
-          </div>
+
           <div>
             <label
               class="
@@ -260,10 +85,10 @@
               "
               for="grid-millesime"
             >
-              Millésime
+              Centilitrage
             </label>
             <input
-              v-model="millesime"
+              v-model="centilitrage"
               class="
                 border border-gray-200
                 appearance-none
@@ -279,7 +104,7 @@
                 focus:outline-none focus:bg-white
               "
               id="grid-millesime"
-              type="text"
+              type="number"
             />
           </div>
           <div>
@@ -294,10 +119,10 @@
               "
               for="grid-couleur"
             >
-              Couleur
+              Type
             </label>
             <select
-              v-model="couleur"
+              v-model="type"
               class="
                 border border-gray-200
                 appearance-none
@@ -314,11 +139,11 @@
               "
               id="grid-couleur"
             >
-              <option>Rouge</option>
-              <option>Blanc</option>
-              <option>Rosé</option>
-              <option>Bubble</option>
-              <option>Biere</option>
+              <option>Anise Mediterranée</option>
+              <option>Spiritueux</option>
+              <option>Apéritif</option>
+              <option>Digestifs Liqueurs</option>
+              <option>Soft</option>
             </select>
           </div>
           <div>
@@ -391,11 +216,10 @@
               placeholder="0"
             />
           </div>
-     
+
           <div>
             <label
               class="
-                info
                 uppercase
                 tracking-wide
                 text-gray-700 text-xs
@@ -442,7 +266,7 @@
               "
               for="grid-download"
             >
-              Download images
+              Télécharger une image
             </label>
             <input type="file" @change="previewFile" />
             <canvas ref="canvas" />
@@ -463,9 +287,9 @@
             mt-10
           "
           type="submit"
-          @click="createWine"
+          @click="newAlcool"
         >
-          Submit
+          Ajouter
         </button>
       </form>
     </div>
@@ -474,19 +298,14 @@
 
 <script>
 export default {
-  name: "SignUp",
+  name: "addAlcool",
   data() {
     return {
       cuvee: "",
-      domaine: "",
-      cepage: "",
-      millesime: "",
-      vigneron: "",
-      couleur: "",
+      producteur: "",
+      type: "",
+      centilitrage: "",
       description: "",
-      region: "",
-      departement: "",
-      pays: "",
       quantite: "",
       prix: "",
       imgBase64: "",
@@ -495,8 +314,7 @@ export default {
     };
   },
   methods: {
-
-      previewFile(e) {
+    previewFile(e) {
       const file = e.target.files[0];
       const reader = new FileReader();
       const maxW = 300;
@@ -519,24 +337,19 @@ export default {
       };
       reader.readAsDataURL(file);
     },
-    async createWine() {
-      const wine = {
+    async newAlcool() {
+      const alcool = {
         cuvee: this.cuvee,
-        domaine: this.domaine,
-        cepage: this.cepage,
-        millesime: this.millesime,
-        vigneron: this.vigneron,
-        couleur: this.couleur,
+        producteur: this.vigneron,
+        centilitrage: this.centilitrage,
+        type: this.type,
         description: this.description,
-        region: this.region,
-        departement: this.departement,
-        pays: this.pays,
         quantite: this.quantite,
         prix: this.prix,
-        imgBase64:this.imgBase64
+        imgBase64: this.imgBase64,
       };
-      await this.$store.dispatch("wines/addWine", wine);
-      await this.$store.dispatch("wines/fetchWines");
+      await this.$store.dispatch("alcools/addAlcool", alcool);
+      await this.$store.dispatch("alcools/fetchAlcools", 0);
     },
   },
 };
@@ -551,11 +364,7 @@ export default {
   margin-top: 20px;
 }
 
-.info {
-  color: black;
-}
-
-.sub {
+ .sub {
   margin-top: 20px;
 }
 .col {

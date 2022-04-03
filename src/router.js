@@ -16,19 +16,19 @@ const routes = [{
   component: () => import('./views/Register.vue'),
 },
 {
-  path: "/Blog",
-  name: "Blog",
-  component: () => import('./views/Blog.vue'),
-},
-{
   path: "/WineList",
   name: "WineList",
   component: () => import('./views/WineList.vue'),
 },
 {
-  path: "/Print/:id",
-  name: "Print",
-  component: () => import('./components/Unique.vue/'),
+  path:'/alcool/:id',
+  name:'Alcool',
+  component: () => import('./components/catalog/AlcoolUnique.vue'),
+},
+{
+  path: "/vin/:id",
+  name: "Vin",
+  component: () => import('./components/Catalog/Unique.vue/'),
 },
 {
   path: "/Admin",
@@ -36,26 +36,25 @@ const routes = [{
   component: () => import('./views/Admin.vue'),
 },
 {
-  path: "/Order",
-  name: "OrderSheet",
-  component: () => import('./components/Cart.vue'),
-},
-{
   path: "/update/:id",
   name: "Update",
-  component: () => import('./components/Update.vue'),
+  component: () => import('./components/AdminWines/Update.vue'),
 },
 {
   path: "/:catchAll(.*)",
   name: "NotFound",
-  component: () => import('./components/NotFound.vue'),
+  component: () => import('./components/Admin/NotFound.vue'),
 },
 {
   path: "/updateUser/:id",
   name: "UpdateUser",
-  component: () => import('./components/UpdateUser.vue'),
+  component: () => import('./components/AdminUsers/UpdateUser.vue'),
 },
-
+{
+  path: "/updateAlcool/:id",
+  name: "UpdateAlcool",
+  component: () => import('./components/AdminWines/UpdateAlcool.vue'),
+},
 {
   path: "/updateOrder/:id",
   name: "updateOrder",
@@ -64,7 +63,7 @@ const routes = [{
 {
   path: "/password-reset/:id/:_id",
   name: "password-reset",
-  component: () => import('./components/Reset.vue'),
+  component: () => import('./components/Utils/Reset.vue'),
 },
 
 ];

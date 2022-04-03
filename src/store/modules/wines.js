@@ -63,6 +63,7 @@ const wines = {
       context.commit("setwine", data);
     },
 
+    //On recupere quantite de bouteilles
     async getWineQuantity(context, _id) {
       const res = await fetch("/api/wines/" + _id)
       const data = await res.json();
@@ -108,9 +109,6 @@ const wines = {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
       });
-      const res = await fetch("/api/wines/")
-      const data = await res.json();
-      context.commit("setwines", data);
     },
 
     async addWine(context, body) {
@@ -157,8 +155,6 @@ const wines = {
       context.commit('setPrice', price);
       context.commit('setwines', data.wines);
       context.commit('setPages', catalog);
-
-
     },
 
     async wineKpi(context) {
