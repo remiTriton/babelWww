@@ -24,7 +24,7 @@ const routes = [
 {
   path:'/alcool/:id',
   name:'Alcool',
-  component: () => import('./components/catalog/AlcoolUnique.vue'),
+  component: () => import('./components/Catalog/AlcoolUnique.vue'),
 },
 {
   path: "/vin/:id",
