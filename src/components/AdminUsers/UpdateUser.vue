@@ -14,7 +14,7 @@
                 <label
                   class="block text-grey-darker text-sm font-bold mb-2"
                   for="first_name"
-                  >First Name</label
+                  >Prénom</label
                 >
                 <input
                   v-model="user.firstName"
@@ -36,7 +36,7 @@
                 <label
                   class="block text-grey-darker text-sm font-bold mb-2"
                   for="last_name"
-                  >Last Name</label
+                  >Nom</label
                 >
                 <input
                   v-model="user.lastName"
@@ -59,7 +59,7 @@
               <label
                 class="blocku text-grey-darker text-sm font-bold mb-2"
                 for="email"
-                >Email Address</label
+                >Adresse Email</label
               >
               <input
                 v-model="user.email"
@@ -108,11 +108,11 @@
                 </select>
               </div>
               <button
-                class="But hover:bg-dark font-bold py-2 px-4 rounded-full"
+                class="But mt-10 hover:bg-dark font-bold py-2 px-4 rounded-full"
                 type="submit"
                 @click="updateUser"
               >
-                Update
+                Editer
               </button>
             </div>
           </div>

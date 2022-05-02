@@ -52,11 +52,7 @@
                       </div>
                     </div>
 
-                    <!-- <Multiselect
-                    class="text-black"
-                    v-model="selected"
-                    :options="options"             
-                  mode="tags" @select="toggleSelected(value)"></Multiselect> -->
+                   
                     <table class="w-full divide-y divide-gray-200">
                       <thead class="head bg-gray-50">
                         <tr>
@@ -67,7 +63,7 @@
                               py-3
                               text-center text-xs
                               font-medium
-                              text-gray-900
+                              text-gray-500
                               uppercase
                               tracking-wider
                               text-center text-xs
@@ -118,7 +114,7 @@
                               text-center text-xs
                             "
                           >
-                            Status
+                            Statut
                           </th>
                           <th
                             scope="col"
@@ -133,7 +129,7 @@
                               text-center text-xs
                             "
                           >
-                            Edit
+                            Editer
                           </th>
                           <th
                             scope="col"
@@ -148,7 +144,7 @@
                               text-center text-xs
                             "
                           >
-                            Delete
+                            Supprimer
                           </th>
                         </tr>
                       </thead>
@@ -209,7 +205,6 @@
                               py-4
                               whitespace-nowrap
                               text-sm text-gray-500
-                              ml-5
                               text-center text-xs
                             "
                           >
@@ -226,26 +221,40 @@
                                   ml-5
                                 "
                               >
-                                Update
+                                Editer
                               </button>
                             </router-link>
                           </td>
-                          <td>
+                          <td   class="
+                             
+                              text-center text-xs
+                              whitespace-nowrap
+                              text-sm text-indigo-700
+                            ">
                             <button
                               class="text-red-600 hover:text-red-900"
                               @click.prevent="Delete(order._id)"
                             >
-                              Delete
+                              Supprimer
                             </button>
                           </td>
                         </tr>
                       </tbody>
                     </table>
+                    
                   </div>
                 </div>
               </div>
             </div>
             <!-- /End replace -->
+             <div class="pages m-10">
+          <button
+           
+            class="text-gray-700 m-5 page"
+            @click="changePage(i)"
+          >
+cc          </button>
+        </div>
           </div>
         </div>
       </main>

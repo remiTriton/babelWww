@@ -95,7 +95,7 @@
                           tracking-wider
                         "
                       >
-                        Edit
+                        Editer
                       </th>
                       <th
                         scope="col"
@@ -109,7 +109,7 @@
                           tracking-wider
                         "
                       >
-                        Delete
+                        Supprimer
                       </th>
                     </thead>
 
@@ -159,12 +159,10 @@
                         </td>
                         <td
                           class="
-                            px-6
-                            py-4
+                       
                             whitespace-nowrap
-                            text-right text-sm
                             font-medium
-                            text-center text-xs
+                            text-center text-sm
                           "
                         >
                           <router-link
@@ -174,16 +172,21 @@
                             }"
                           >
                             <button
-                              class="text-indigo-600 hover:text-indigo-900 ml-5"
+                              class="text-indigo-600 hover:text-indigo-900"
                             >
-                              Update
+                              Editer
                             </button>
                           </router-link></td>
-                         <td> <button
+                         <td class="
+                       
+                            whitespace-nowrap
+                            font-medium
+                            text-center text-sm
+                          " > <button
                             class="text-red-600 hover:text-red-900 ml-5 mr-5"
                             @click.prevent="Delete(user.email, user._id)"
                           >
-                            Delete
+                            Supprimer
                           </button>
                         </td>
                       </tr>
